@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  expiration_date: 2024-07-19
+
+two:
+  expiration_date: 2024-07-19
