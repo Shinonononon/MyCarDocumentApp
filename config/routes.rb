@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :optional_insurances, only: [:new, :create, :edit, :update]
   resources :documents, only: [:index]
   # メインページ
-  root 'document#index'
+  root 'documents#index'
 end
