@@ -2,10 +2,10 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: [:edit, :update]
 
   def index
-    @driver_licenses = DriverLicense.where(user: current_user)
-    @vehicle_inspections = VehicleInspection.where(user: current_user)
-    @compulsory_insurances = CompulsoryInsurance.where(user: current_user)
-    @optional_insurances = OptionalInsurance.where(user: current_user)
+    @driver_licenses = DriverLicense.all
+    @vehicle_inspections = VehicleInspection.all
+    @compulsory_insurances = CompulsoryInsurance.all
+    @optional_insurances = OptionalInsurance.all
   end
 
   def new
@@ -14,9 +14,8 @@ class DocumentsController < ApplicationController
 
   def create
     @document = document_class.new(document_params)
-    @document.user = current_user
     if @document.save
-      redirect_to next_path, notice: "#{document_name}が提出されました。次は#{next_document_name}を提出してください。"
+      redirect_to next_path, notice: "#{document_name}が提出されました。"
     else
       render :new
     end
