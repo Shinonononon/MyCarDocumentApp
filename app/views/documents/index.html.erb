@@ -1,0 +1,17 @@
+<h1>提出された書類の有効期限一覧</h1>
+<h2>免許証</h2>
+<% @driver_licenses.each do |license| %>
+  <p>有効期限: <%= license.expiration_date %></p>
+<% end %>
+<h2>車検証</h2>
+<% @vehicle_inspections.each do |inspection| %>
+  <p>有効期限: <%= inspection.expiration_date %></p>
+<% end %>
+<h2>自賠責保険</h2>
+<% @compulsory_insurances.each do |insurance| %>
+  <p>有効期限: <%= insurance.expiration_date %></p>
+<% end %>
+<h2>任意保険</h2>
+<% @optional_insurances.each do |insurance| %>
+  <p>有効期限: <%= insurance.expiration_date %></p>
+<% end %>

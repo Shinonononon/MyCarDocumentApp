@@ -1,13 +1,23 @@
-class CompulsoryInsurancesController < ApplicationController
-  def new
+class CompulsoryInsurancesController < DocumentsController
+  private
+
+  def document_class
+    CompulsoryInsurance
   end
 
-  def create
+  def document_name
+    '自賠責保険'
   end
 
-  def edit
+  def document_params
+    params.require(:compulsory_insurance).permit(:expiration_date, :photo)
   end
 
-  def update
+  def next_path
+    new_optional_insurance_path
+  end
+
+  def next_document_name
+    '任意保険'
   end
 end

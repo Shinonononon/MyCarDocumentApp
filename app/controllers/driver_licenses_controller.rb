@@ -1,13 +1,23 @@
-class DriverLicensesController < ApplicationController
-  def new
+class DriverLicensesController < DocumentsController
+  private
+
+  def document_class
+    DriverLicense
   end
 
-  def create
+  def document_name
+    '免許証'
   end
 
-  def edit
+  def document_params
+    params.require(:driver_license).permit(:expiration_date, :photo)
   end
 
-  def update
+  def next_path
+    new_vehicle_inspection_path
+  end
+
+  def next_document_name
+    '車検証'
   end
 end
