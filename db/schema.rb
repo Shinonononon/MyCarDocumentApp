@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_19_092250) do
+ActiveRecord::Schema.define(version: 2024_07_23_052823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,10 +55,47 @@ ActiveRecord::Schema.define(version: 2024_07_19_092250) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.string "name", null: false
+    t.string "employee_number", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_employees_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+  end
+
+  create_table "employees_roles", id: false, force: :cascade do |t|
+    t.bigint "employee_id"
+    t.bigint "role_id"
+    t.index ["employee_id", "role_id"], name: "index_employees_roles_on_employee_id_and_role_id"
+    t.index ["employee_id"], name: "index_employees_roles_on_employee_id"
+    t.index ["role_id"], name: "index_employees_roles_on_role_id"
+  end
+
   create_table "optional_insurances", force: :cascade do |t|
     t.date "expiration_date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
   create_table "vehicle_inspections", force: :cascade do |t|
