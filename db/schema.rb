@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2024_07_23_052823) do
     t.string "last_sign_in_ip"
     t.string "name", null: false
     t.string "employee_number", null: false
+    t.string "department", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_employees_on_email", unique: true
