@@ -5,7 +5,7 @@
 <% else %>
   <% @driver_licenses.each do |license| %>
     <p>有効期限: <%= license.expiration_date %></p>
-    <p><%= link_to '編集する', edit_driver_license_path(license), class: 'btn btn-secondary' %></p>
+    <p><%= link_to '編集する', edit_uploads_driver_license_path(license), class: 'btn btn-secondary' %></p>
   <% end %>
 <% end %>
 <h2>車検証</h2>
@@ -14,7 +14,7 @@
 <% else %>
   <% @vehicle_inspections.each do |inspection| %>
     <p>有効期限: <%= inspection.expiration_date %></p>
-    <p><%= link_to '編集する', edit_vehicle_inspection_path(inspection), class: 'btn btn-secondary' %></p>
+    <p><%= link_to '編集する', edit_uploads_vehicle_inspection_path(inspection), class: 'btn btn-secondary' %></p>
   <% end %>
 <% end %>
 <h2>自賠責保険</h2>
@@ -23,7 +23,7 @@
 <% else %>
   <% @compulsory_insurances.each do |insurance| %>
     <p>有効期限: <%= insurance.expiration_date %></p>
-    <p><%= link_to '編集する', edit_compulsory_insurance_path(insurance), class: 'btn btn-secondary' %></p>
+    <p><%= link_to '編集する', edit_uploads_compulsory_insurance_path(insurance), class: 'btn btn-secondary' %></p>
   <% end %>
 <% end %>
 <h2>任意保険</h2>
@@ -32,11 +32,11 @@
 <% else %>
   <% @optional_insurances.each do |insurance| %>
     <p>有効期限: <%= insurance.expiration_date %></p>
-    <p><%= link_to '編集する', edit_optional_insurance_path(insurance), class: 'btn btn-secondary' %></p>
+    <p><%= link_to '編集する', edit_uploads_optional_insurance_path(insurance), class: 'btn btn-secondary' %></p>
   <% end %>
 <% end %>
 <% if @driver_licenses.empty? && @vehicle_inspections.empty? && @compulsory_insurances.empty? && @optional_insurances.empty? %>
   <div style="margin-top: 20px;">
-    <%= link_to '新規提出', new_driver_license_path, class: 'btn btn-primary' %>
+    <%= link_to '新規提出', new_uploads_driver_license_path, class: 'btn btn-primary' %>
   </div>
 <% end %>

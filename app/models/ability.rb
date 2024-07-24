@@ -1,32 +1,28 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
-    # Define abilities for the user here. For example:
-    #
-    #   return unless user.present?
-    #   can :read, :all
-    #   return unless user.admin?
-    #   can :manage, :all
-    #
-    # The first argument to `can` is the action you are giving the user
-    # permission to do.
-    # If you pass :manage it will apply to every action. Other common actions
-    # here are :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on.
-    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
-    # class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the
-    # objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, published: true
-    #
-    # See the wiki for details:
-    # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
+  def initialize(employee)
+    employee ||= Employee.new # guest user (not logged in)
+
+    if employee.has_role?(:super_admin)
+      can :manage, :all
+      cannot :update, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection]
+    elsif employee.has_role?(:admin)
+      can :manage, Employee
+      can :manage, Department
+      can :read, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection], employee_id: employee.id
+      cannot :read, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection], :photo
+      cannot :update, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection]
+    elsif employee.has_role?(:department_admin)
+      can :manage, Employee, department: employee.department
+      can :read, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection], employee: { department: employee.department }
+      cannot :read, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection], :photo
+      cannot :update, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection]
+    else
+      can :read, Employee, id: employee.id
+      can :update, Employee, id: employee.id, only: [:email, :password, :password_confirmation]
+      can :read, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection], employee_id: employee.id
+      can :update, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection], employee_id: employee.id
+    end
   end
 end
