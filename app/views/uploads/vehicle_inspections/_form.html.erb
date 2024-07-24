@@ -1,0 +1,13 @@
+<%= form_with(model: @vehicle_inspection, url: @vehicle_inspection.persisted? ? uploads_vehicle_inspection_path(@vehicle_inspection) : uploads_vehicle_inspections_path) do |f| %>
+  <div class="field">
+    <%= f.label :expiration_date %><br />
+    <%= f.date_field :expiration_date %>
+  </div>
+  <div class="field">
+    <%= f.label :photo %><br />
+    <%= f.file_field :photo %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>

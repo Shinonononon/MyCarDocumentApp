@@ -1,0 +1,13 @@
+<%= form_with(model: @compulsory_insurance, url: @compulsory_insurance.persisted? ? uploads_compulsory_insurance_path(@compulsory_insurance) : uploads_compulsory_insurances_path) do |f| %>
+  <div class="field">
+    <%= f.label :expiration_date %><br />
+    <%= f.date_field :expiration_date %>
+  </div>
+  <div class="field">
+    <%= f.label :photo %><br />
+    <%= f.file_field :photo %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>

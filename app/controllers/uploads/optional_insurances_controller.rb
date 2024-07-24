@@ -1,25 +1,45 @@
 module Uploads
-  class OptionalInsurancesController < DocumentsController
+  class OptionalInsurancesController < ApplicationController
+    before_action :authenticate_employee!
+    before_action :set_optional_insurance, only: [:edit, :update]
+
+    def new
+      @optional_insurance = current_employee.optional_insurance
+      if @optional_insurance.present?
+        redirect_to edit_uploads_optional_insurance_path(@optional_insurance)
+      else
+        @optional_insurance = current_employee.build_optional_insurance
+      end
+    end
+
+    def create
+      @optional_insurance = current_employee.build_optional_insurance(optional_insurance_params)
+      if @optional_insurance.save
+        redirect_to uploads_documents_path, notice: 'Optional insurance was successfully created.'
+      else
+        render :new
+      end
+    end
+
+    def edit
+    end
+
+    def update
+      if @optional_insurance.update(optional_insurance_params)
+        redirect_to uploads_documents_path, notice: 'Optional insurance information was successfully updated.'
+      else
+        render :edit
+      end
+    end
+
     private
 
-    def document_class
-      OptionalInsurance
+    def set_optional_insurance
+      @optional_insurance = current_employee.optional_insurance
     end
 
-    def document_name
-      '任意保険'
-    end
-
-    def document_params
+    def optional_insurance_params
       params.require(:optional_insurance).permit(:expiration_date, :photo)
-    end
-
-    def next_path
-      root_path
-    end
-
-    def next_document_name
-      ''
     end
   end
 end
