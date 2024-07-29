@@ -31,8 +31,3 @@
   <p>有効期限: <%= @optional_insurance.expiration_date %></p>
   <p><%= link_to '編集する', edit_uploads_optional_insurance_path(@optional_insurance), class: 'btn btn-secondary' %></p>
 <% end %>
-<% if @driver_license.nil? && @vehicle_inspection.nil? && @compulsory_insurance.nil? && @optional_insurance.nil? %>
-  <div style="margin-top: 20px;">
-    <%= link_to '新規提出', new_uploads_driver_license_path, class: 'btn btn-primary' %>
-  </div>
-<% end %>

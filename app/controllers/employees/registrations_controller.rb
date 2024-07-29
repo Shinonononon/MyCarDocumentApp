@@ -42,6 +42,10 @@ class Employees::RegistrationsController < Devise::RegistrationsController
 
   protected
 
+  def sign_up_params
+    params.require(:employee).permit(:name, :employee_number, :department_id, :email, :password, :password_confirmation, :role)
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :employee_number, :department_id])

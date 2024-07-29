@@ -14,6 +14,7 @@ class EmployeesController < ApplicationController
   end
 
   def show
+    @employee = current_employee
   end
 
   def new
@@ -34,8 +35,6 @@ class EmployeesController < ApplicationController
       render 'super_admin/employees/edit'
     elsif current_employee.has_role?(:admin)
       render 'admin/employees/edit'
-    elsif current_employee.has_role?(:department_admin)
-      render 'department_admin/employees/edit'
     else
       render 'employees/edit'
     end
@@ -49,8 +48,6 @@ class EmployeesController < ApplicationController
         render 'super_admin/employees/edit'
       elsif current_employee.has_role?(:admin)
         render 'admin/employees/edit'
-      elsif current_employee.has_role?(:department_admin)
-        render 'department_admin/employees/edit'
       else
         render 'employees/edit'
       end
@@ -58,9 +55,12 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    if current_employee.has_role?(:super_admin) || current_employee.has_role?(:admin) || current_employee.has_role?(:department_admin)
+    if current_employee.has_role?(:super_admin)
       @employee.destroy
-      redirect_to employees_url, notice: 'Employee was successfully destroyed.'
+      redirect_to super_admin_employees_path, notice: 'Employee was successfully destroyed.'
+    elsif current_employee.has_role?(:admin)
+      @employee.destroy
+      redirect_to admin_employees_path, notice: 'Employee was successfully destroyed.'
     else
       redirect_to root_path, alert: 'Access denied.'
     end

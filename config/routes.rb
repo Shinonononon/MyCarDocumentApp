@@ -1,5 +1,27 @@
 Rails.application.routes.draw do
 
+  namespace :super_admin do
+    resources :employees
+  end
+  namespace :admin do
+    resources :employees
+  end
+  namespace :department_admin do
+    resources :employees, only: [:index, :show]
+  end
+
+  devise_for :employees, controllers: {
+  confirmations: 'employees/confirmations',
+  passwords: 'employees/passwords',
+  registrations: 'employees/registrations',
+  sessions: 'employees/sessions',
+  unlocks: 'employees/unlocks',
+  # omniauth_callbacks: 'employees/omniauth_callbacks'
+}
+  devise_scope :employee do
+    get '/employees/sign_out' => 'devise/sessions#destroy'
+  end
+
   get 'pages/index'
   namespace :uploads do
     resources :driver_licenses, only: [:new, :create, :edit, :update]
@@ -10,15 +32,8 @@ Rails.application.routes.draw do
   end
   # メインページ
   # root 'documents#index'
-  devise_for :employees, controllers: {
-  confirmations: 'employees/confirmations',
-  passwords: 'employees/passwords',
-  registrations: 'employees/registrations',
-  sessions: 'employees/sessions',
-  unlocks: 'employees/unlocks',
-  # omniauth_callbacks: 'employees/omniauth_callbacks'
-}
+
   root to: "pages#index"
   resources :employees
-  resources :departments, only: [:index, :new, :create, :destroy]
+  resources :departments
 end

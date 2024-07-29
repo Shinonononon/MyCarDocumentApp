@@ -1,0 +1,33 @@
+<h2>アカウント編集</h2>
+<%= form_for([:admin, @employee]) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :employee_number %><br />
+    <%= f.text_field :employee_number %>
+  </div>
+  <div class="field">
+    <%= f.label :department %><br />
+    <%= f.collection_select :department_id, Department.all, :id, :name, prompt: "Select Department" %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "編集" %>
+  </div>
+<% end %>

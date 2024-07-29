@@ -14,9 +14,9 @@
         <ul>
           <% if employee_signed_in? %>
             <% if current_employee.has_role?(:super_admin) || current_employee.has_role?(:admin) %>
-              <li><%= link_to 'Employee List', employees_path %></li>
+              <li><%= link_to 'Employee List', super_admin_employees_path %></li>
               <li><%= link_to 'Department List', departments_path %></li>
-              <li><%= link_to 'New Employee', new_employee_path %></li>
+              <li><%= link_to 'New Employee', new_super_admin_employee_path %></li>
             <% else %>
               <li><%= link_to 'Documents', uploads_documents_path %></li>
               <li><%= link_to 'My Account', employee_path(current_employee) %></li>
