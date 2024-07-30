@@ -1,35 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>MyCarDocumentApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
     <header>
-      <nav>
-        <ul>
-          <% if employee_signed_in? %>
-            <% if current_employee.has_role?(:super_admin) || current_employee.has_role?(:admin) %>
-              <li><%= link_to 'Employee List', super_admin_employees_path %></li>
-              <li><%= link_to 'Department List', departments_path %></li>
-              <li><%= link_to 'New Employee', new_super_admin_employee_path %></li>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">MyCarDocumentApp</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <% if employee_signed_in? %>
+              <% if current_employee.has_role?(:super_admin) %>
+                <li class="nav-item"><%= link_to '社員一覧（管理者）', super_admin_employees_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '部署一覧（管理者）', departments_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '新しい社員（管理者）', new_super_admin_employee_path, class: "nav-link" %></li>
+              <% elsif current_employee.has_role?(:admin) %>
+                <li class="nav-item"><%= link_to '社員一覧（管理者）', admin_employees_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '部署一覧（管理者）', departments_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '新しい社員（管理者）', new_admin_employee_path, class: "nav-link" %></li>
+              <% elsif current_employee.has_role?(:department_admin) %>
+                <li class="nav-item"><%= link_to '社員一覧（部門管理者）', department_admin_employees_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '部署一覧（部門管理者）', departments_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '新しい社員（部門管理者）', new_department_admin_employee_path, class: "nav-link" %></li>
+              <% else %>
+                <li class="nav-item"><%= link_to '書類', uploads_documents_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to 'マイアカウント', employee_path(current_employee), class: "nav-link" %></li>
+              <% end %>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_employee_session_path, method: :delete, class: "nav-link" %></li>
             <% else %>
-              <li><%= link_to 'Documents', uploads_documents_path %></li>
-              <li><%= link_to 'My Account', employee_path(current_employee) %></li>
+              <li class="nav-item"><%= link_to 'ログイン', new_employee_session_path, class: "nav-link" %></li>
             <% end %>
-            <li><%= link_to 'Logout', destroy_employee_session_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to 'Login', new_employee_session_path %></li>
-          <% end %>
-        </ul>
+          </ul>
+        </div>
       </nav>
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container">
+      <p class="notice alert alert-info"><%= notice %></p>
+      <p class="alert alert-danger"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>

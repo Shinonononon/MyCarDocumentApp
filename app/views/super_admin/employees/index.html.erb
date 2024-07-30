@@ -1,15 +1,36 @@
-<h1>Employees</h1>
-<%= link_to 'New Employee', new_super_admin_employee_path %>
+<% content_for :title, t('employees.index.title') %>
+<h1><%= t('employees.index.title') %></h1>
+<div class="search_field">
+  <%= form_with url: super_admin_employees_path, method: :get, scope: :search, local: true do |form| %>
+    <div class="field">
+      <%= form.label :name, Employee.human_attribute_name(:name) %>
+      <%= form.text_field :name, value: @search_params[:name] %>
+    </div>
+    <div class="field">
+      <%= form.label :employee_number, Employee.human_attribute_name(:employee_number) %>
+      <%= form.text_field :employee_number, value: @search_params[:employee_number] %>
+    </div>
+    <div class="field">
+      <%= form.label :department, Employee.human_attribute_name(:department) %>
+      <%= form.select :department, options_for_select(Department.all.map { |department| [department.name, department.id] }, selected: @search_params[:department]), { include_blank: true } %>
+    </div>
+    <div class="actions">
+      <%= form.submit t('employees.index.search'), id: "search_task" %>
+    </div>
+  <% end %>
+</div>
+<%= link_to t('employees.index.new'), new_super_admin_employee_path %>
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Employee Number</th>
-      <th>Driver License Expiration</th>
-      <th>Vehicle Inspection Expiration</th>
-      <th>Compulsory Insurance Expiration</th>
-      <th>Optional Insurance Expiration</th>
-      <th>Role</th>
+      <th><%= Employee.human_attribute_name(:name) %></th>
+      <th><%= Employee.human_attribute_name(:employee_number) %></th>
+      <th><%= Employee.human_attribute_name(:department) %></th>
+      <th><%= t('employees.index.driver_license_expiration') %></th>
+      <th><%= t('employees.index.vehicle_inspection_expiration') %></th>
+      <th><%= t('employees.index.compulsory_insurance_expiration') %></th>
+      <th><%= t('employees.index.optional_insurance_expiration') %></th>
+      <th><%= t('employees.index.role') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,14 +39,17 @@
       <tr>
         <td><%= employee.name %></td>
         <td><%= employee.employee_number %></td>
+        <td><%= employee.department.name %></td>
         <td><%= employee.driver_license&.expiration_date %></td>
         <td><%= employee.vehicle_inspection&.expiration_date %></td>
         <td><%= employee.compulsory_insurance&.expiration_date %></td>
         <td><%= employee.optional_insurance&.expiration_date %></td>
-        <td><%= employee.roles.map(&:name) %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_super_admin_employee_path(employee) %></td>
-        <td><%= button_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= employee.roles.map { |role| I18n.t("roles.#{role.name}") }.join(', ') %>
+        </td>
+        <td><%= link_to t('employees.index.show'), super_admin_employee_path(employee) %></td>
+        <td><%= link_to t('employees.index.edit'), edit_super_admin_employee_path(employee) %></td>
+        <td><%= link_to t('employees.index.destroy'), super_admin_employee_path(employee), method: :delete, data: { confirm: t('employees.index.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -7,6 +7,10 @@
     <%= f.label :photo %><br />
     <%= f.file_field :photo %>
   </div>
+  <div class="field">
+    <%= f.label :skip_submission, "任意保険に加入していません" %><br />
+    <%= f.check_box :skip_submission %>
+  </div>
   <div class="actions">
     <%= f.submit 'Save' %>
   </div>

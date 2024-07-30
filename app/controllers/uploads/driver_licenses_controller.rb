@@ -15,11 +15,16 @@ module Uploads
     def create
       @driver_license = current_employee.build_driver_license(driver_license_params)
       if @driver_license.save
-        redirect_to new_uploads_vehicle_inspection_path, notice: 'Driver license was successfully created.'
+        if current_employee.vehicle_inspection.nil?
+          redirect_to new_uploads_vehicle_inspection_path, notice: 'Driver license was successfully created. Please submit your vehicle inspection.'
+        else
+          redirect_to uploads_documents_path, notice: 'Driver license was successfully created.'
+        end
       else
         render :new
       end
     end
+
 
     def edit
     end

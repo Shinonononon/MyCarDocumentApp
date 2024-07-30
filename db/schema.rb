@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2024_07_24_015938) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "name", null: false
+    t.string "name_kana", null: false
     t.string "employee_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

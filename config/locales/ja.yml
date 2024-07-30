@@ -1,0 +1,77 @@
+ja:
+  activerecord:
+    models:
+      compulsory_insurance: 自賠責保険
+      department: 部署
+      driver_license: 運転免許証
+      employee: 社員
+      optional_insurance: 任意保険
+      role: ロール
+      vehicle_inspection: 車検証
+    attributes:
+      department:
+        name: 部署名
+      driver_license:
+        expiration_date: 有効期限
+      vehicle_inspection:
+        expiration_date: 有効期限
+      compulsory_insurance:
+        expiration_date: 有効期限
+      optional_insurance:
+        expiration_date: 有効期限
+      vehicle_inspection:
+        expiration_date: 有効期限
+      employee:
+        name: 名前
+        name_kana: 名前（かな）
+        employee_number: 社員番号
+        department_id: 部署ID
+        department: 所属部署
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        encrypted_password: 暗号化パスワード
+        reset_password_token: リセットパスワードトークン
+        reset_password_sent_at: リセットパスワード送信日時
+        remember_created_at: ログイン情報記憶日時
+        sign_in_count: サインイン回数
+        current_sign_in_at: 現在のサインイン日時
+        last_sign_in_at: 最終サインイン日時
+        current_sign_in_ip: 現在のサインインIP
+        last_sign_in_ip: 最終サインインIP
+      role:
+        name: ロール
+        created_at: 作成日時
+        updated_at: 更新日時
+  roles:
+    general: 一般ユーザー
+    super_admin: スーパー管理者
+    admin: 管理者
+    department_admin: 部署管理者
+  employees:
+    index:
+      title: 社員一覧
+      search: 検索
+      new: 新しい社員を登録する
+      driver_license_expiration: 運転免許証
+      vehicle_inspection_expiration: 車検証
+      compulsory_insurance_expiration: 自賠責保険
+      optional_insurance_expiration: 任意保険
+      role: 権限
+      show: 詳細
+      edit: 編集
+      destroy: 削除
+      are_you_sure: 本当に削除しますか？
+    common:
+    new: 新規作成
+    show: 詳細
+    edit: 編集
+    destroy: 削除
+    back: 戻る
+    log-in: ログイン
+    confirm_destroy: 本当に削除してもよろしいですか？
+    not_privilege: アクセス権限がありません
+    login_required: ログインしてください
+    logout_required: ログアウトしてください
+    admin_required: 管理者以外アクセスできません
+    admin_last_one: スーパー管理者が0人になるため削除できません

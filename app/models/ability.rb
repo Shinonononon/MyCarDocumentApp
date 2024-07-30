@@ -18,9 +18,10 @@ class Ability
       can :read, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection], employee: { department: employee.department }
       cannot :read, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection], :photo
       cannot :update, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection]
-    else
+    elsif employee.has_role?(:general)
       can :read, Employee, id: employee.id
-      can :update, Employee, id: employee.id, only: [:email, :password, :password_confirmation]
+      can :update, Employee, [:email, :password, :password_confirmation]
+      cannot :update, Employee, [:name, :employee_number, :department]
       can :read, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection], employee_id: employee.id
       can :update, [CompulsoryInsurance, DriverLicense, OptionalInsurance, VehicleInspection], employee_id: employee.id
     end

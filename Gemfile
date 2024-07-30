@@ -7,6 +7,11 @@ ruby '3.3.0'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.4.1'
+gem 'rails-i18n'
+gem 'devise-i18n-views'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.7'

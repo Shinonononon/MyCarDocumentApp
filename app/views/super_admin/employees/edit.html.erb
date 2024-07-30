@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :roles %><br />
-    <%= f.select :roles, options_for_select(Role.all.map { |r| [r.name, r.id] }, selected: @employee.role_ids.first), prompt: "Select Role" %>
+    <%= f.select :roles, options_for_select(Role.all.map { |r| [I18n.t("roles.#{r.name}"), r.id] }, selected: @employee.role_ids.first), prompt: "Select Role" %>
   </div>
   <div class="actions">
     <%= f.submit "編集" %>

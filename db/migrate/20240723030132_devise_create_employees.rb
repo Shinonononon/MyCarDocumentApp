@@ -34,6 +34,7 @@ class DeviseCreateEmployees < ActiveRecord::Migration[6.1]
 
       # 社員番号とか
       t.string :name, null: false
+      t.string :name_kana, null:false
       t.string :employee_number, null: false
       # t.string :department, null: false
 

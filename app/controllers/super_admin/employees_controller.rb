@@ -6,7 +6,8 @@ module SuperAdmin
     load_and_authorize_resource
 
     def index
-      @employees = Employee.all.includes(:department, :driver_license, :vehicle_inspection, :compulsory_insurance, :optional_insurance)
+      @search_params = employee_search_params
+      @employees = Employee.all.includes(:department, :driver_license, :vehicle_inspection, :compulsory_insurance, :optional_insurance).search(@search_params)
     end
 
     def show
@@ -46,6 +47,10 @@ module SuperAdmin
 
     private
 
+    def employee_search_params
+      params.fetch(:search, {}).permit(:name, :employee_number, :department)
+    end
+
     def super_admin_required
       unless current_employee&.has_role?(:super_admin)
         flash[:notice] = t('common.admin_required')
@@ -58,7 +63,7 @@ module SuperAdmin
     end
 
     def employee_params
-      params.require(:employee).permit(:name, :employee_number, :department_id, :email, :password, :password_confirmation, :role_ids)
+      params.require(:employee).permit(:name,:name_kana,:employee_number, :department_id, :email, :password, :password_confirmation, :role_ids)
     end
   end
 end

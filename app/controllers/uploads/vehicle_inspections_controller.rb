@@ -15,7 +15,11 @@ module Uploads
     def create
       @vehicle_inspection = current_employee.build_vehicle_inspection(vehicle_inspection_params)
       if @vehicle_inspection.save
-        redirect_to new_uploads_compulsory_insurance_path, notice: 'Vehicle inspection was successfully created.'
+        if current_employee.compulsory_insurance.nil?
+          redirect_to new_uploads_compulsory_insurance_path, notice: 'Vehicle inspection was successfully created. Please submit your compulsory insurance.'
+        else
+          redirect_to uploads_documents_path, notice: 'Vehicle inspection was successfully created.'
+        end
       else
         render :new
       end

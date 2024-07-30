@@ -34,6 +34,6 @@ Rails.application.routes.draw do
   # root 'documents#index'
 
   root to: "pages#index"
-  resources :employees
+  resources :employees, only: [:edit, :update, :show]
   resources :departments
 end

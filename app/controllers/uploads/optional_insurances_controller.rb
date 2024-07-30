@@ -3,6 +3,7 @@ module Uploads
     before_action :authenticate_employee!
     before_action :set_optional_insurance, only: [:edit, :update]
 
+
     def new
       @optional_insurance = current_employee.optional_insurance
       if @optional_insurance.present?
@@ -13,11 +14,15 @@ module Uploads
     end
 
     def create
-      @optional_insurance = current_employee.build_optional_insurance(optional_insurance_params)
-      if @optional_insurance.save
-        redirect_to uploads_documents_path, notice: 'Optional insurance was successfully created.'
+      if params[:optional_insurance][:skip_submission] == '1'
+        redirect_to uploads_documents_path, notice: 'Optional insurance submission skipped.'
       else
-        render :new
+        @optional_insurance = current_employee.build_optional_insurance(optional_insurance_params)
+        if @optional_insurance.save
+          redirect_to uploads_documents_path, notice: 'Optional insurance was successfully created.'
+        else
+          render :new
+        end
       end
     end
 

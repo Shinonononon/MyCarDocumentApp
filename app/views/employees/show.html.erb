@@ -1,2 +1,5 @@
 <p>名前： <%= @employee.name %></p>
+<p>社員番号： <%= @employee.employee_number %></p>
+<p>所属部署：<%= @employee.department.name %></p>
 <p>メールアドレス: <%= @employee.email %></p>
+<%= link_to 'edit', edit_employee_path(@employee) %>
