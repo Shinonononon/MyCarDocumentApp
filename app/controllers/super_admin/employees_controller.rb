@@ -33,7 +33,8 @@ module SuperAdmin
 
     def update
       if @employee.update(employee_params)
-        @employee.update_role(params[:employee][:roles])
+
+        @employee.update_role(employee_params[:role_ids])
         redirect_to super_admin_employees_path, notice: 'アカウントが更新されました'
       else
         render :edit

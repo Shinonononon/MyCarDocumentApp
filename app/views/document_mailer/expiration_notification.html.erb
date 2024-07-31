@@ -1,9 +1,9 @@
 <p><%= @employee.name %> 様,</p>
 <br>
 <% if @documents.size > 1 %>
-  <p>以下の書類の有効期限が近づいています:</p>
+  <p>以下の書類の有効期限が近づいています。</p>
 <% else %>
-  <p><%= @documents.first.model_name.human %>の有効期限が近づいています:</p>
+  <p><%= @documents.first.model_name.human %>の有効期限が近づいています。</p>
 <% end %>
 <br>
 <br>
@@ -14,4 +14,4 @@
 </ul>
 <br>
 <br>
-<p>早めに更新手続きをお願いします。</p>
+<p>早めに更新手続きをお願いします!!</p>

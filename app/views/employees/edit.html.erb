@@ -1,7 +1,7 @@
 <h2><%= t('employees.edit.title') %></h2>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-7">
       <%= form_for(@employee, html: { class: 'form-horizontal' }) do |f| %>
         <% if @employee.errors.any? %>
           <div class="alert alert-danger" role="alert">

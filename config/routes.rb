@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   resources :employees, only: [:edit, :update, :show]
   resources :departments
 
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
 end
