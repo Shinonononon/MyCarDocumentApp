@@ -12,13 +12,15 @@
           <%= f.label :name_kana, Employee.human_attribute_name(:name_kana), class: 'col-form-label' %><br />
           <%= f.text_field :name_kana, autofocus: true, class: 'form-control' %>
         </div>
-        <div class="form-group">
-          <%= f.label :employee_number, Employee.human_attribute_name(:employee_number), class: 'col-form-label' %><br />
-          <%= f.text_field :employee_number, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :department, Employee.human_attribute_name(:department), class: 'col-form-label' %><br />
-          <%= f.collection_select :department_id, Department.all, :id, :name, { prompt: "部署を選択" }, { class: 'form-control' } %>
+        <div class="form-row">
+          <div class="form-group col-md-8">
+            <%= f.label :employee_number, Employee.human_attribute_name(:employee_number), class: 'col-form-label' %><br />
+            <%= f.text_field :employee_number, class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-4">
+            <%= f.label :department, Employee.human_attribute_name(:department), class: 'col-form-label' %><br />
+            <%= f.collection_select :department_id, Department.all, :id, :name, { prompt: "部署を選択" }, { class: 'form-control' } %>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :email, Employee.human_attribute_name(:email), class: 'col-form-label' %><br />
@@ -40,7 +42,7 @@
           <%= f.select :role_ids, options_for_select(Role.all.map { |r| [I18n.t("roles.#{r.name}"), r.id] }, selected: @employee.role_ids.first), { prompt: "ロールを選択" }, { class: 'form-control' } %>
         </div>
         <div class="form-group">
-          <%= f.submit "社員を作成", class: 'btn btn-primary' %>
+          <%= f.submit "社員を作成", class: 'btn btn-primary btn-block btn-custom mt-5' %>
         </div>
       <% end %>
     </div>

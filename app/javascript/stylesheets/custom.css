@@ -3,22 +3,13 @@
     /* 水色寄りのブルー */
 }
 
-.btn-custom-blue {
-    background-color: #00a0e9;
-    /* 同系色のボタン */
-    color: #ffffff;
-}
 
-
-.btn-custom-blue:hover {
-    background-color: #003894;
-}
 
 .navbar-nav .nav-item .nav-link {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    /* margin-top: 0.5rem; */
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
 }
 
 .notice {
