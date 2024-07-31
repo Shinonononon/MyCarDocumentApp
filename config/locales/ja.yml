@@ -13,14 +13,19 @@ ja:
         name: 部署名
       driver_license:
         expiration_date: 有効期限
+        photo: 提出書類
       vehicle_inspection:
         expiration_date: 有効期限
+        photo: 提出書類
       compulsory_insurance:
         expiration_date: 有効期限
+        photo: 提出書類
       optional_insurance:
         expiration_date: 有効期限
+        photo: 提出書類
       vehicle_inspection:
         expiration_date: 有効期限
+        photo: 提出書類
       employee:
         name: 名前
         name_kana: 名前（かな）

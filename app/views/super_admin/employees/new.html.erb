@@ -1,42 +1,48 @@
 <!-- app/views/super_admin/employees/new.html.erb -->
-<h2>アカウント作成</h2>
-<%= form_for([:super_admin, @employee]) do |f| %>
-  <div class="field">
-    <%= f.label :name, Employee.human_attribute_name(:name) %><br />
-    <%= f.text_field :name, autofocus: true %>
+<h2><%= t('employees.new.title') %></h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_for([:super_admin, @employee], html: { class: 'form-horizontal' }) do |f| %>
+        <div class="form-group">
+          <%= f.label :name, Employee.human_attribute_name(:name), class: 'col-form-label' %><br />
+          <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name_kana, Employee.human_attribute_name(:name_kana), class: 'col-form-label' %><br />
+          <%= f.text_field :name_kana, autofocus: true, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :employee_number, Employee.human_attribute_name(:employee_number), class: 'col-form-label' %><br />
+          <%= f.text_field :employee_number, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :department, Employee.human_attribute_name(:department), class: 'col-form-label' %><br />
+          <%= f.collection_select :department_id, Department.all, :id, :name, { prompt: "部署を選択" }, { class: 'form-control' } %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, Employee.human_attribute_name(:email), class: 'col-form-label' %><br />
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, Employee.human_attribute_name(:password), class: 'col-form-label' %>
+          <% if @minimum_password_length %>
+            <small class="form-text text-muted">(<%= @minimum_password_length %>文字以上)</small>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, Employee.human_attribute_name(:password_confirmation), class: 'col-form-label' %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :role, Role.human_attribute_name(:name), class: 'col-form-label' %><br />
+          <%= f.select :role_ids, options_for_select(Role.all.map { |r| [I18n.t("roles.#{r.name}"), r.id] }, selected: @employee.role_ids.first), { prompt: "ロールを選択" }, { class: 'form-control' } %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "社員を作成", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :name_kana, Employee.human_attribute_name(:name_kana) %><br />
-    <%= f.text_field :name_kana, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :employee_number, Employee.human_attribute_name(:employee_number) %><br />
-    <%= f.text_field :employee_number %>
-  </div>
-  <div class="field">
-    <%= f.label :department, Employee.human_attribute_name(:department) %><br />
-    <%= f.collection_select :department_id, Department.all, :id, :name, prompt: "部署を選択" %>
-  </div>
-  <div class="field">
-    <%= f.label :email, Employee.human_attribute_name(:email) %><br />
-    <%= f.email_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password, Employee.human_attribute_name(:password) %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %>文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, Employee.human_attribute_name(:password_confirmation) %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <div class="field">
-    <%= f.label :role, Role.human_attribute_name(:name) %><br />
-    <%= f.select :role_ids, options_for_select(Role.all.map { |r| [I18n.t("roles.#{r.name}"), r.id] }, selected: @employee.role_ids.first), prompt: "ロールを選択" %>
-  </div>
-  <div class="actions">
-    <%= f.submit "社員を作成" %>
-  </div>
-<% end %>
+</div>

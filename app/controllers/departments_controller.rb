@@ -15,7 +15,7 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
     if @department.save
-      redirect_to departments_path, notice: 'Department was successfully created.'
+      redirect_to departments_path, notice: '部署が作成されました'
     else
       render :new
     end
@@ -27,10 +27,15 @@ class DepartmentsController < ApplicationController
 
   def update
     if @department.update(department_params)
-      redirect_to departments_path, notice: t('.updated')
+      redirect_to departments_path, notice: '部署が編集されました'
     else
       render :edit
     end
+  end
+
+  def destroy
+    @department.destroy
+    redirect_to departments_path, notice: '部署が削除されました'
   end
 
   private

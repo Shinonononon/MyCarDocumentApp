@@ -1,13 +1,13 @@
-<%= form_with(model: @driver_license, url: @driver_license.persisted? ? uploads_driver_license_path(@driver_license) : uploads_driver_licenses_path) do |f| %>
-  <div class="field">
-    <%= f.label :expiration_date %><br />
-    <%= f.date_field :expiration_date %>
+<%= form_with(model: @driver_license, url: @driver_license.persisted? ? uploads_driver_license_path(@driver_license) : uploads_driver_licenses_path, html: { class: 'form-horizontal' }) do |f| %>
+  <div class="form-group">
+    <%= f.label :expiration_date, DriverLicense.human_attribute_name(:expiration_date), class: 'col-form-label' %><br />
+    <%= f.date_field :expiration_date, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :photo %><br />
-    <%= f.file_field :photo %>
+  <div class="form-group">
+    <%= f.label :photo, DriverLicense.human_attribute_name(:photo), class: 'col-form-label' %><br />
+    <%= f.file_field :photo, class: 'form-control-file' %>
   </div>
-  <div class="actions">
-    <%= f.submit 'Save' %>
+  <div class="form-group">
+    <%= f.submit '保存', class: 'btn btn-primary' %>
   </div>
 <% end %>

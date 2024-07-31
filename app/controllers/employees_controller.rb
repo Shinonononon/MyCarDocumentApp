@@ -11,7 +11,7 @@ class EmployeesController < ApplicationController
 
     if @employee.update(employee_params)
       sign_in :employee, @employee, bypass: true
-      redirect_to uploads_documents_path, notice: 'Employee was successfully updated.'
+      redirect_to employee_path(@employee), notice: 'Employee was successfully updated.'
     else
       render :edit
     end

@@ -11,6 +11,7 @@ require("channels")
 
 import 'bootstrap';
 import '../stylesheets/application';
+import "../stylesheets/custom.css"; // カスタムCSSをインポート
 //require("jquery")
 
 //= require jquery

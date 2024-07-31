@@ -1,33 +1,51 @@
-<h1>提出された書類の有効期限一覧</h1>
-<h2>免許証</h2>
-<% if @driver_license.nil? %>
-  <p>提出されている免許証はありません。</p>
-  <%= link_to '新規提出', new_uploads_driver_license_path, class: 'btn btn-primary' %>
-<% else %>
-  <p>有効期限: <%= @driver_license.expiration_date %></p>
-  <p><%= link_to '編集する', edit_uploads_driver_license_path(@driver_license), class: 'btn btn-secondary' %></p>
-<% end %>
-<h2>車検証</h2>
-<% if @vehicle_inspection.nil? %>
-  <p>提出されている車検証はありません。</p>
-  <%= link_to '新規提出', new_uploads_vehicle_inspection_path, class: 'btn btn-primary' %>
-<% else %>
-  <p>有効期限: <%= @vehicle_inspection.expiration_date %></p>
-  <p><%= link_to '編集する', edit_uploads_vehicle_inspection_path(@vehicle_inspection), class: 'btn btn-secondary' %></p>
-<% end %>
-<h2>自賠責保険</h2>
-<% if @compulsory_insurance.nil? %>
-  <p>提出されている自賠責保険はありません。</p>
-  <%= link_to '新規提出', new_uploads_compulsory_insurance_path, class: 'btn btn-primary' %>
-<% else %>
-  <p>有効期限: <%= @compulsory_insurance.expiration_date %></p>
-  <p><%= link_to '編集する', edit_uploads_compulsory_insurance_path(@compulsory_insurance), class: 'btn btn-secondary' %></p>
-<% end %>
-<h2>任意保険</h2>
-<% if @optional_insurance.nil? %>
-  <p>提出されている任意保険はありません。</p>
-  <%= link_to '新規提出', new_uploads_optional_insurance_path, class: 'btn btn-primary' %>
-<% else %>
-  <p>有効期限: <%= @optional_insurance.expiration_date %></p>
-  <p><%= link_to '編集する', edit_uploads_optional_insurance_path(@optional_insurance), class: 'btn btn-secondary' %></p>
-<% end %>
+<h2 class="text-center mb-4">提出された書類の有効期限一覧</h2>
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h3>免許証</h3>
+      <% if @driver_license.nil? %>
+        <p>提出されている免許証はありません。</p>
+        <%= link_to '新規提出', new_uploads_driver_license_path, class: 'btn btn-primary btn-block btn-custom' %>
+      <% else %>
+        <p>有効期限: <%= @driver_license.expiration_date %></p>
+        <%= link_to '編集する', edit_uploads_driver_license_path(@driver_license), class: 'btn btn-secondary btn-block btn-custom' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <h3>車検証</h3>
+      <% if @vehicle_inspection.nil? %>
+        <p>提出されている車検証はありません。</p>
+        <%= link_to '新規提出', new_uploads_vehicle_inspection_path, class: 'btn btn-primary btn-block btn-custom' %>
+      <% else %>
+        <p>有効期限: <%= @vehicle_inspection.expiration_date %></p>
+        <%= link_to '編集する', edit_uploads_vehicle_inspection_path(@vehicle_inspection), class: 'btn btn-secondary btn-block btn-custom' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <h3>自賠責保険</h3>
+      <% if @compulsory_insurance.nil? %>
+        <p>提出されている自賠責保険はありません。</p>
+        <%= link_to '新規提出', new_uploads_compulsory_insurance_path, class: 'btn btn-primary btn-block btn-custom' %>
+      <% else %>
+        <p>有効期限: <%= @compulsory_insurance.expiration_date %></p>
+        <%= link_to '編集する', edit_uploads_compulsory_insurance_path(@compulsory_insurance), class: 'btn btn-secondary btn-block btn-custom' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <h3>任意保険</h3>
+      <% if @optional_insurance.nil? %>
+        <p>提出されている任意保険はありません。</p>
+        <%= link_to '新規提出', new_uploads_optional_insurance_path, class: 'btn btn-primary btn-block btn-custom' %>
+      <% else %>
+        <p>有効期限: <%= @optional_insurance.expiration_date %></p>
+        <%= link_to '編集する', edit_uploads_optional_insurance_path(@optional_insurance), class: 'btn btn-secondary btn-block btn-custom' %>
+      <% end %>
+    </div>
+  </div>
+</div>

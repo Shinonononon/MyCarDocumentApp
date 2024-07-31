@@ -1,5 +1,13 @@
-<p>名前： <%= @employee.name %></p>
-<p>社員番号： <%= @employee.employee_number %></p>
-<p>所属部署：<%= @employee.department.name %></p>
-<p>メールアドレス: <%= @employee.email %></p>
-<%= link_to 'edit', edit_employee_path(@employee) %>
+<h2><%= t('employees.show.title') %></h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <p>名前： <%= @employee.name %></p>
+      <p>かな： <%= @employee.name_kana %></p>
+      <p>社員番号： <%= @employee.employee_number %></p>
+      <p>所属部署：<%= @employee.department.name %></p>
+      <p>メールアドレス: <%= @employee.email %></p>
+      <%= link_to t('employees.edit.edit_button'), edit_employee_path(@employee), class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

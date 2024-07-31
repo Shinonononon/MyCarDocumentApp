@@ -16,22 +16,21 @@ module Uploads
       @driver_license = current_employee.build_driver_license(driver_license_params)
       if @driver_license.save
         if current_employee.vehicle_inspection.nil?
-          redirect_to new_uploads_vehicle_inspection_path, notice: 'Driver license was successfully created. Please submit your vehicle inspection.'
+          redirect_to new_uploads_vehicle_inspection_path, notice: '運転免許証が提出されました。次に車検証を提出してください。'
         else
-          redirect_to uploads_documents_path, notice: 'Driver license was successfully created.'
+          redirect_to uploads_documents_path, notice: '運転免許証が提出されました。'
         end
       else
         render :new
       end
     end
 
-
     def edit
     end
 
     def update
       if @driver_license.update(driver_license_params)
-        redirect_to uploads_documents_path, notice: 'Driver license information was successfully updated.'
+        redirect_to uploads_documents_path, notice: '運転免許証情報が更新されました。'
       else
         render :edit
       end

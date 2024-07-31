@@ -21,7 +21,7 @@ module SuperAdmin
     def create
       @employee = Employee.new(employee_params)
       if @employee.save
-        redirect_to super_admin_employees_path, notice: 'Employee was successfully created.'
+        redirect_to super_admin_employees_path, notice: 'アカウントが作成されました'
       else
         render :new
       end
@@ -34,7 +34,7 @@ module SuperAdmin
     def update
       if @employee.update(employee_params)
         @employee.update_role(params[:employee][:roles])
-        redirect_to super_admin_employees_path, notice: 'Employee was successfully updated.'
+        redirect_to super_admin_employees_path, notice: 'アカウントが更新されました'
       else
         render :edit
       end
@@ -42,7 +42,7 @@ module SuperAdmin
 
     def destroy
       @employee.destroy
-      redirect_to super_admin_employees_path, notice: 'Employee was successfully destroyed.'
+      redirect_to super_admin_employees_path, notice: 'アカウントが削除されました'
     end
 
     private
@@ -53,7 +53,7 @@ module SuperAdmin
 
     def super_admin_required
       unless current_employee&.has_role?(:super_admin)
-        flash[:notice] = t('common.admin_required')
+        flash[:notice] = 'アクセス権限がありません'
         redirect_to pages_index_path
       end
     end

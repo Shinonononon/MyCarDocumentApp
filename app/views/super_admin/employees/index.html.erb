@@ -1,26 +1,26 @@
 <% content_for :title, t('employees.index.title') %>
-<h1><%= t('employees.index.title') %></h1>
-<div class="search_field">
-  <%= form_with url: super_admin_employees_path, method: :get, scope: :search, local: true do |form| %>
-    <div class="field">
-      <%= form.label :name, Employee.human_attribute_name(:name) %>
-      <%= form.text_field :name, value: @search_params[:name] %>
+<h1 class="my-4"><%= t('employees.index.title') %></h1>
+<div class="search_field mb-4">
+  <%= form_with url: super_admin_employees_path, method: :get, scope: :search, local: true, class: "form-inline" do |form| %>
+    <div class="form-group mr-3">
+      <%= form.label :name, Employee.human_attribute_name(:name), class: 'mr-2' %>
+      <%= form.text_field :name, value: @search_params[:name], class: 'form-control' %>
     </div>
-    <div class="field">
-      <%= form.label :employee_number, Employee.human_attribute_name(:employee_number) %>
-      <%= form.text_field :employee_number, value: @search_params[:employee_number] %>
+    <div class="form-group mr-3">
+      <%= form.label :employee_number, Employee.human_attribute_name(:employee_number), class: 'mr-2' %>
+      <%= form.text_field :employee_number, value: @search_params[:employee_number], class: 'form-control' %>
     </div>
-    <div class="field">
-      <%= form.label :department, Employee.human_attribute_name(:department) %>
-      <%= form.select :department, options_for_select(Department.all.map { |department| [department.name, department.id] }, selected: @search_params[:department]), { include_blank: true } %>
+    <div class="form-group mr-3">
+      <%= form.label :department, Employee.human_attribute_name(:department), class: 'mr-2' %>
+      <%= form.select :department, options_for_select(Department.all.map { |department| [department.name, department.id] }, selected: @search_params[:department]), { include_blank: true }, class: 'form-control' %>
     </div>
-    <div class="actions">
-      <%= form.submit t('employees.index.search'), id: "search_task" %>
+    <div class="form-group">
+      <%= form.submit t('employees.index.search'), id: "search_task", class: 'btn btn-primary' %>
     </div>
   <% end %>
 </div>
-<%= link_to t('employees.index.new'), new_super_admin_employee_path %>
-<table>
+<%= link_to t('employees.index.new'), new_super_admin_employee_path, class: "btn btn-primary mb-3" %>
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= Employee.human_attribute_name(:name) %></th>
@@ -44,12 +44,10 @@
         <td><%= employee.vehicle_inspection&.expiration_date %></td>
         <td><%= employee.compulsory_insurance&.expiration_date %></td>
         <td><%= employee.optional_insurance&.expiration_date %></td>
-        <td>
-          <%= employee.roles.map { |role| I18n.t("roles.#{role.name}") }.join(', ') %>
-        </td>
-        <td><%= link_to t('employees.index.show'), super_admin_employee_path(employee) %></td>
-        <td><%= link_to t('employees.index.edit'), edit_super_admin_employee_path(employee) %></td>
-        <td><%= link_to t('employees.index.destroy'), super_admin_employee_path(employee), method: :delete, data: { confirm: t('employees.index.are_you_sure') } %></td>
+        <td><%= employee.roles.map { |role| I18n.t("roles.#{role.name}") }.join(', ') %></td>
+        <td><%= link_to t('employees.index.show'), super_admin_employee_path(employee), class: "btn btn-info btn-sm" %></td>
+        <td><%= link_to t('employees.index.edit'), edit_super_admin_employee_path(employee), class: "btn btn-warning btn-sm" %></td>
+        <td><%= link_to t('employees.index.destroy'), super_admin_employee_path(employee), method: :delete, data: { confirm: t('employees.index.are_you_sure') }, class: "btn btn-danger btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>

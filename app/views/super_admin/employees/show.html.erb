@@ -1,24 +1,35 @@
-<p>名前： <%= @employee.name %></p>
-<p>社員番号： <%= @employee.employee_number %></p>
-<p>所属部署：<%= @employee.department.name %></p>
-<p>メールアドレス: <%= @employee.email %></p>
-<p>ロール： <%= @employee.roles.map(&:name) %></p>
-<%= link_to 'Destroy', super_admin_employee_path(@employee) ,method: :delete, data: { confirm: 'Are you sure?' } %>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Driver License Expiration</th>
-      <th>Vehicle Inspection Expiration</th>
-      <th>Compulsory Insurance Expiration</th>
-      <th>Optional Insurance Expiration</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @employee.driver_license&.expiration_date %></td>
-      <td><%= @employee.vehicle_inspection&.expiration_date %></td>
-      <td><%= @employee.compulsory_insurance&.expiration_date %></td>
-      <td><%= @employee.optional_insurance&.expiration_date %></td>
-    </tr>
-  </tbody>
+<h2><%= t('employees.show.title') %></h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-9">
+      <p>名前： <%= @employee.name %></p>
+      <p>かな： <%= @employee.name_kana %></p>
+      <p>社員番号： <%= @employee.employee_number %></p>
+      <p>所属部署：<%= @employee.department.name %></p>
+      <p>メールアドレス: <%= @employee.email %></p>
+      <p>ロール： <%= @employee.roles.map { |role| I18n.t("roles.#{role.name}") }.join(', ') %></p>
+      <div class="text-right">
+        <%= link_to 'Destroy', super_admin_employee_path(@employee) ,method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+      </div>
+      <table class="table table-striped mt-4">
+        <thead>
+          <tr>
+            <th><%= t('employees.index.driver_license_expiration') %></th>
+            <th><%= t('employees.index.vehicle_inspection_expiration') %></th>
+            <th><%= t('employees.index.compulsory_insurance_expiration') %></th>
+            <th><%= t('employees.index.optional_insurance_expiration') %></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @employee.driver_license&.expiration_date %></td>
+            <td><%= @employee.vehicle_inspection&.expiration_date %></td>
+            <td><%= @employee.compulsory_insurance&.expiration_date %></td>
+            <td><%= @employee.optional_insurance&.expiration_date %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

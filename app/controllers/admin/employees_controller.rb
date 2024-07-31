@@ -21,7 +21,7 @@ module Admin
     def create
       @employee = Employee.new(employee_params)
       if @employee.save
-        redirect_to admin_employees_path, notice: 'Employee was successfully created.'
+        redirect_to admin_employees_path, notice: 'アカウントが作成されました'
       else
         render :new
       end
@@ -34,7 +34,7 @@ module Admin
     def update
       if @employee.update(employee_params)
         @employee.update_role(params[:employee])
-        redirect_to admin_employees_path, notice: 'Employee was successfully updated.'
+        redirect_to admin_employees_path, notice: 'アカウントが更新されました'
       else
         render :edit
       end
@@ -42,7 +42,7 @@ module Admin
 
     def destroy
       @employee.destroy
-      redirect_to admin_employees_path, notice: 'Employee was successfully destroyed.'
+      redirect_to admin_employees_path, notice: 'アカウントが削除されました'
     end
 
     private
@@ -53,7 +53,7 @@ module Admin
 
     def admin_required
       unless current_employee&.has_role?(:admin)
-        flash[:notice] = t('common.admin_required')
+        flash[:notice] = 'アクセス権限がありません'
         redirect_to pages_index_path
       end
     end
