@@ -11,6 +11,8 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.4.1'
 gem 'rails-i18n'
 gem 'devise-i18n-views'
+gem 'rspec-rails'
+gem 'rexml'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
