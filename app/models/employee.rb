@@ -30,6 +30,21 @@ class Employee < ApplicationRecord
   scope :search_number, ->(employee_number) { where('employee_number LIKE ?', "%#{employee_number}%") if employee_number.present? }
   scope :search_department, ->(department) { joins(:department).where(department: { id: department }) if department.present? }
 
+  # メーラー
+  def self.send_expiration_notifications
+    Employee.includes(:driver_license, :vehicle_inspection, :compulsory_insurance, :optional_insurance).find_each do |employee|
+      documents = []
+      documents << employee.driver_license if employee.driver_license&.expiration_date == Date.today + 1.month
+      documents << employee.vehicle_inspection if employee.vehicle_inspection&.expiration_date == Date.today + 1.month
+      documents << employee.compulsory_insurance if employee.compulsory_insurance&.expiration_date == Date.today + 1.month
+      documents << employee.optional_insurance if employee.optional_insurance&.expiration_date == Date.today + 1.month
+
+      if documents.any?
+        DocumentMailer.expiration_notification(employee, documents).deliver_now
+      end
+    end
+  end
+
   # default role
   def assign_default_role
     self.add_role(:general) if self.roles.blank?
