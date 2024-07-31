@@ -1,0 +1,62 @@
+<% content_for :title, t('employees.index.title') %>
+<h1 class="my-4"><%= t('employees.index.title') %></h1>
+<%= link_to t('employees.index.new'), new_super_admin_employee_path, class: "btn btn-primary mb-3" %>
+<div class="search_field mb-4">
+  <%= form_with url: super_admin_employees_path, method: :get, scope: :search, local: true do |form| %>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <%= form.label :name, Employee.human_attribute_name(:name) %>
+        <%= form.text_field :name, value: @search_params[:name], class: "form-control" %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= form.label :employee_number, Employee.human_attribute_name(:employee_number) %>
+        <%= form.text_field :employee_number, value: @search_params[:employee_number], class: "form-control" %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= form.label :department, Employee.human_attribute_name(:department) %>
+        <%= form.select :department, options_for_select(Department.all.map { |department| [department.name, department.id] }, selected: @search_params[:department]), { include_blank: true }, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-row justify-content-end">
+      <div class="form-group">
+        <%= form.submit t('employees.index.search'), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class= 'text-right'>
+  <button class="btn btn-secondary mb-3" type="button" data-toggle="collapse" data-target=".extra-columns" aria-expanded="false" aria-controls="extra-columns">
+    列を表示/非表示
+  </button>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= Employee.human_attribute_name(:name) %></th>
+      <th class="collapse extra-columns"><%= Employee.human_attribute_name(:employee_number) %></th>
+      <th class="collapse extra-columns"><%= Employee.human_attribute_name(:department) %></th>
+      <th><%= t('employees.index.driver_license_expiration') %></th>
+      <th><%= t('employees.index.vehicle_inspection_expiration') %></th>
+      <th><%= t('employees.index.compulsory_insurance_expiration') %></th>
+      <th><%= t('employees.index.optional_insurance_expiration') %></th>
+      <th class="collapse extra-columns"><%= t('employees.index.role') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td class="collapse extra-columns"><%= employee.employee_number %></td>
+        <td class="collapse extra-columns"><%= employee.department.name %></td>
+        <td><%= employee.driver_license&.expiration_date %></td>
+        <td><%= employee.vehicle_inspection&.expiration_date %></td>
+        <td><%= employee.compulsory_insurance&.expiration_date %></td>
+        <td><%= employee.optional_insurance&.expiration_date %></td>
+        <td class="collapse extra-columns"><%= employee.roles.map { |role| I18n.t("roles.#{role.name}") }.join(', ') %></td>
+        <td><%= link_to t('employees.index.show'), super_admin_employee_path(employee), class: "btn btn-info btn-sm" %></td>
+        <td><%= link_to t('employees.index.edit'), edit_super_admin_employee_path(employee), class: "btn btn-warning btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,43 @@
+<% content_for :title, t('employees.index.title') %>
+<h1><%= t('employees.index.title') %></h1>
+<div class="search_field">
+  <%= form_with url: super_admin_employees_path, method: :get, scope: :search, local: true do |form| %>
+    <div class="field">
+      <%= form.label :name, Employee.human_attribute_name(:name) %>
+      <%= form.text_field :name, value: @search_params[:name] %>
+    </div>
+    <div class="field">
+      <%= form.label :employee_number, Employee.human_attribute_name(:employee_number) %>
+      <%= form.text_field :employee_number, value: @search_params[:employee_number] %>
+    </div>
+    <div class="actions">
+      <%= form.submit t('employees.index.search'), id: "search_task" %>
+    </div>
+  <% end %>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th><%= Employee.human_attribute_name(:name) %></th>
+      <th><%= Employee.human_attribute_name(:employee_number) %></th>
+      <th><%= t('employees.index.driver_license_expiration') %></th>
+      <th><%= t('employees.index.vehicle_inspection_expiration') %></th>
+      <th><%= t('employees.index.compulsory_insurance_expiration') %></th>
+      <th><%= t('employees.index.optional_insurance_expiration') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.employee_number %></td>
+        <td><%= employee.driver_license&.expiration_date %></td>
+        <td><%= employee.vehicle_inspection&.expiration_date %></td>
+        <td><%= employee.compulsory_insurance&.expiration_date %></td>
+        <td><%= employee.optional_insurance&.expiration_date %></td>
+        <td><%= link_to t('employees.index.show'), department_admin_employee_path(employee), class: "btn btn-info btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

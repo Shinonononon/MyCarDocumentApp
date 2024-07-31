@@ -1,0 +1,17 @@
+<%= form_with(model: @optional_insurance, url: @optional_insurance.persisted? ? uploads_optional_insurance_path(@optional_insurance) : uploads_optional_insurances_path, html: { class: 'form-horizontal' }) do |f| %>
+  <div class="form-group">
+    <%= f.label :expiration_date, OptionalInsurance.human_attribute_name(:expiration_date), class: 'col-form-label' %><br />
+    <%= f.date_field :expiration_date, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :photo, OptionalInsurance.human_attribute_name(:photo), class: 'col-form-label' %><br />
+    <%= f.file_field :photo, class: 'form-control-file' %>
+  </div>
+  <div class="form-group form-check">
+    <%= f.check_box :skip_submission, class: 'form-check-input' %>
+    <%= f.label :skip_submission, "任意保険に加入していません", class: 'form-check-label' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

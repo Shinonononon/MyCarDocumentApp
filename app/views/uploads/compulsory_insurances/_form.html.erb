@@ -1,0 +1,13 @@
+<%= form_with(model: @compulsory_insurance, url: @compulsory_insurance.persisted? ? uploads_compulsory_insurance_path(@compulsory_insurance) : uploads_compulsory_insurances_path, html: { class: 'form-horizontal' }) do |f| %>
+  <div class="form-group">
+    <%= f.label :expiration_date, CompulsoryInsurance.human_attribute_name(:expiration_date), class: 'col-form-label' %><br />
+    <%= f.date_field :expiration_date, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :photo, CompulsoryInsurance.human_attribute_name(:photo), class: 'col-form-label' %><br />
+    <%= f.file_field :photo, class: 'form-control-file' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

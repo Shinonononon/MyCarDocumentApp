@@ -1,0 +1,31 @@
+.bg-custom-blue {
+    background-color: #7fcdf4;
+    /* 水色寄りのブルー */
+}
+
+
+
+.navbar-nav .nav-item .nav-link {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+}
+
+.notice {
+    display: none;
+}
+
+.notice.alert-info:not(.d-none) {
+    display: block;
+}
+
+/*
+.footer {
+    background-color: #f8f9fa;
+    /* グレーの背景 */
+/* padding: 1rem 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+} */

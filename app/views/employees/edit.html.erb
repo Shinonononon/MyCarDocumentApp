@@ -1,0 +1,36 @@
+<h2><%= t('employees.edit.title') %></h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_for(@employee, html: { class: 'form-horizontal' }) do |f| %>
+        <% if @employee.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <div id="error_explanation">
+              <h4><%= pluralize(@employee.errors.count, "つ") %> のエラーが発生しました:</h4>
+              <ul>
+                <% @employee.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.label :email, Employee.human_attribute_name(:email), class: 'col-form-label' %><br />
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, Employee.human_attribute_name(:password), class: 'col-form-label' %><br />
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, Employee.human_attribute_name(:password_confirmation), class: 'col-form-label' %><br />
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "更新", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
