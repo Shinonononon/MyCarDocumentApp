@@ -7,10 +7,6 @@
       <p>社員番号： <%= @employee.employee_number %></p>
       <p>所属部署：<%= @employee.department.name %></p>
       <p>メールアドレス: <%= @employee.email %></p>
-      <p>ロール： <%= @employee.roles.map { |role| I18n.t("roles.#{role.name}") }.join(', ') %></p>
-      <div class="text-right">
-        <%= link_to '削除', admin_employee_path(@employee), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
-      </div>
       <table class="table table-striped mt-4">
         <thead>
           <tr>

@@ -6,6 +6,7 @@ module DepartmentAdmin
     load_and_authorize_resource
 
     def index
+      @search_params = employee_search_params
       @employees = Employee.where(department: current_employee.department).includes(:department, :driver_license, :vehicle_inspection, :compulsory_insurance, :optional_insurance)
     end
 
@@ -15,6 +16,10 @@ module DepartmentAdmin
 
 
     private
+
+    def employee_search_params
+      params.fetch(:search, {}).permit(:name, :employee_number)
+    end
 
     def department_admin_required
       unless current_employee&.has_role?(:department_admin)

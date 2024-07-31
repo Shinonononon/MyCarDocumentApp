@@ -17,17 +17,16 @@
           <ul class="navbar-nav">
             <% if employee_signed_in? %>
               <% if current_employee.has_role?(:super_admin) %>
-                <li class="nav-item"><%= link_to '社員一覧（管理者）', super_admin_employees_path, class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to '部署一覧（管理者）', departments_path, class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to '新しい社員（管理者）', new_super_admin_employee_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '社員一覧（スーパー）', super_admin_employees_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '部署一覧（スーパー）', departments_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '新しい社員（スーパー）', new_super_admin_employee_path, class: "nav-link" %></li>
               <% elsif current_employee.has_role?(:admin) %>
                 <li class="nav-item"><%= link_to '社員一覧（管理者）', admin_employees_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to '部署一覧（管理者）', departments_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to '新しい社員（管理者）', new_admin_employee_path, class: "nav-link" %></li>
               <% elsif current_employee.has_role?(:department_admin) %>
-                <li class="nav-item"><%= link_to '社員一覧（部門管理者）', department_admin_employees_path, class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to '部署一覧（部門管理者）', departments_path, class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to '新しい社員（部門管理者）', new_department_admin_employee_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '社員一覧（部署管理者）', department_admin_employees_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to '部署一覧（部署管理者）', departments_path, class: "nav-link" %></li>
               <% else %>
                 <li class="nav-item"><%= link_to '書類', uploads_documents_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to 'マイアカウント', employee_path(current_employee), class: "nav-link" %></li>
