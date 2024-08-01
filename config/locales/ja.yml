@@ -55,7 +55,7 @@ ja:
     department_admin: 部署管理者
   employees:
     index:
-      title: 社員一覧
+      title: 社員リスト
       search: 検索
       new: 新しい社員を登録する
       driver_license_expiration: 免許証

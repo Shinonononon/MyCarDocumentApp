@@ -3,8 +3,6 @@
     /* 水色寄りのブルー */
 }
 
-
-
 .navbar-nav .nav-item .nav-link {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -29,3 +27,25 @@
     bottom: 0;
     width: 100%;
 } */
+
+.card {
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-blue {
+    background-color: #7fcdf4;
+}
+
+.card-cream {
+    background-color: #FFFACD;
+}
+
+.btn-custom {
+    margin-top: 20px;
+}

@@ -1,0 +1,25 @@
+<h1>MyCarDocumentApp</h1>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-cream">
+        <div class="card-body">
+          <h5 class="card-title">generalロールの場合</h5>
+          <p>これは、皆様の通勤管理のために免許証などの書類を提出するアプリです。</p>
+          <p>下記の4点の、有効期限がはっきりと写った画像ファイルをご用意いただき、この先へお進みください。</p>
+          <p>なお、画像ファイルは皆様のスマートフォンなどで撮影していただいたもので問題ありません。</p>
+          <ul>
+            <li>運転免許証</li>
+            <li>車検証</li>
+            <li>自賠責保険証</li>
+            <li>任意保険証</li>
+          </ul>
+          <br>
+          <p>提出方法を詳しく見る方はこちら</p>
+          <%= link_to '新規提出をはじめる', new_uploads_driver_license_path, class: 'btn btn-primary btn-block btn-custom' %>
+          <p>もしもdocumentが提出されていたら→<%= link_to '書類', uploads_documents_path, class: "btn btn-primary" %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

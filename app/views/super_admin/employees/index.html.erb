@@ -1,9 +1,6 @@
 <% content_for :title, t('employees.index.title') %>
 <h1 class="my-4"><%= t('employees.index.title') %></h1>
 <%= link_to t('employees.index.new'), new_super_admin_employee_path, class: "btn btn-primary mb-3" %>
-<div class= 'text-right'>
-  <%= link_to 'mailer見本', 'http://localhost:3000/rails/mailers/document_mailer',  class: "btn btn-secondary" %>
-</div>
 <div class="search_field mb-4">
   <%= form_with url: super_admin_employees_path, method: :get, scope: :search, local: true do |form| %>
     <div class="form-row">

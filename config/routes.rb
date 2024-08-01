@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   get 'pages/index'
+  get 'help', to: 'pages#help'
   namespace :uploads do
     resources :driver_licenses, only: [:new, :create, :edit, :update]
     resources :vehicle_inspections, only: [:new, :create, :edit, :update]

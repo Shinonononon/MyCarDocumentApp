@@ -1,0 +1,44 @@
+<h1>MyCarDocumentApp</h1>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card card-blue">
+        <div class="card-body">
+          <h5 class="card-title">社員リスト</h5>
+          <p class="card-text">社員の確認や検索が可能です。社員アカウントの詳細もこちらから確認、編集できます。</p>
+          <%= link_to '社員リストへ', super_admin_employees_path, class: 'btn btn-primary mt-auto' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card card-blue">
+        <div class="card-body">
+          <h5 class="card-title">部署リスト</h5>
+          <p class="card-text">部署の一覧が確認できます。また、部署の編集や削除もこちらから行えます。</p>
+          <%= link_to '部署リストへ', departments_path, class: 'btn btn-primary mt-auto' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card card-blue">
+        <div class="card-body">
+          <h5 class="card-title">社員の新規作成</h5>
+          <p class="card-text">新しいアカウントを作成します。管理者ユーザーの設定などもこちらから行えます。</p>
+          <%= link_to '新しい社員を作成', new_super_admin_employee_path, class: 'btn btn-primary mt-auto' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <div class="card card-cream">
+        <div class="card-body">
+          <h5 class="card-title">ユーザーからのQ&A想定</h5>
+          <p><strong>Q.パスワードを忘れてしまいました</strong></p>
+          <p>A.社員リストから、社員番号やお名前で検索を実行。該当アカウントの編集を行い、初期設定パスワードを設定してください。初期設定パスワードをお伝えし、必ずご自身で「マイアカウント」からパスワードの変更を行うように指示をお願いします。</p>
+          <p>などの想定されるQ&Aを表示設定。実際の運用になる際は、掲示板等を追加で作成など。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
