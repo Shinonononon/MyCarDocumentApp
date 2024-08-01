@@ -4,7 +4,7 @@
     <div class="col-md-12">
       <div class="card card-cream">
         <div class="card-body">
-          <h5 class="card-title">generalロールの場合</h5>
+          <h5 class="card-title">ご案内</h5>
           <p>これは、皆様の通勤管理のために免許証などの書類を提出するアプリです。</p>
           <p>下記の4点の、有効期限がはっきりと写った画像ファイルをご用意いただき、この先へお進みください。</p>
           <p>なお、画像ファイルは皆様のスマートフォンなどで撮影していただいたもので問題ありません。</p>
@@ -16,8 +16,11 @@
           </ul>
           <br>
           <p>提出方法を詳しく見る方はこちら</p>
-          <%= link_to '新規提出をはじめる', new_uploads_driver_license_path, class: 'btn btn-primary btn-block btn-custom' %>
-          <p>もしもdocumentが提出されていたら→<%= link_to '書類', uploads_documents_path, class: "btn btn-primary" %></p>
+          <% if @driver_license.nil? %>
+            <%= link_to '新規提出をはじめる', new_uploads_driver_license_path, class: 'btn btn-primary btn-block btn-custom mb-3' %>
+          <% else %>
+            <%= link_to '書類ページへ', uploads_documents_path, class: "btn btn-primary" %>
+          <% end %>
         </div>
       </div>
     </div>

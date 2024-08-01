@@ -28,10 +28,10 @@
     width: 100%;
 } */
 
-/* .card {
+.card {
     height: 100%;
-} */
-/*
+}
+
 .card-body {
     display: flex;
     flex-direction: column;
@@ -48,4 +48,4 @@
 
 .btn-custom {
     margin-top: 20px;
-} */
+}

@@ -7,7 +7,7 @@ module DepartmentAdmin
 
     def index
       @search_params = employee_search_params
-      @employees = Employee.where(department: current_employee.department).includes(:department, :driver_license, :vehicle_inspection, :compulsory_insurance, :optional_insurance)
+      @employees = Employee.where(department: current_employee.department).includes(:department, :driver_license, :vehicle_inspection, :compulsory_insurance, :optional_insurance).search(@search_params)
     end
 
     def show
