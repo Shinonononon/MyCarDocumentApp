@@ -14,8 +14,10 @@ class Employee < ApplicationRecord
         :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
-  validates :employee_number, presence: true
+  validates :name_kana, presence: true
+  validates :employee_number, presence: true, uniqueness: true
   validates :department_id, presence: true
+
 
   # search
   scope :search, ->(search_params) {

@@ -1,4 +1,16 @@
 <%= form_with(model: @optional_insurance, url: @optional_insurance.persisted? ? uploads_optional_insurance_path(@optional_insurance) : uploads_optional_insurances_path, html: { class: 'form-horizontal' }) do |f| %>
+  <% if @optional_insurance.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <div id="error_explanation">
+        <h4><%= pluralize(@optional_insurance.errors.count, "つ") %> のエラーが発生しました:</h4>
+        <ul>
+          <% @optional_insurance.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
   <div class="form-group">
     <%= f.label :expiration_date, OptionalInsurance.human_attribute_name(:expiration_date), class: 'col-form-label' %><br />
     <%= f.date_field :expiration_date, class: 'form-control' %>

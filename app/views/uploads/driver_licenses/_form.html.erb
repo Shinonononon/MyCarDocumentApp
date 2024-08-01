@@ -1,4 +1,16 @@
 <%= form_with(model: @driver_license, url: @driver_license.persisted? ? uploads_driver_license_path(@driver_license) : uploads_driver_licenses_path, html: { class: 'form-horizontal' }) do |f| %>
+  <% if @driver_license.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <div id="error_explanation">
+        <h4><%= pluralize(@driver_license.errors.count, "つ") %> のエラーが発生しました:</h4>
+        <ul>
+          <% @driver_license.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
   <div class="form-group">
     <%= f.label :expiration_date, DriverLicense.human_attribute_name(:expiration_date), class: 'col-form-label' %><br />
     <%= f.date_field :expiration_date, class: 'form-control' %>

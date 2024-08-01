@@ -1,1 +1,69 @@
-<h1>help</h1>
+<div class="container mt-4">
+  <% if current_employee.has_role?(:general) %>
+  <% else %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-cream">
+          <div class="card-body">
+            <h5>※ここは通常ユーザー用のヘルプページです※</h5>
+            <p>もし何か操作方法がわからない等の質問があれば、このページを参考にしてください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <br>
+  <h1>ヘルプページ</h1>
+  <p>以下のステップに従って、書類の提出手順を確認してください</p>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h2>ステップ 1</h2>
+      <p>有効期限の入力枠の選択:</p>
+      <p>まず、有効期限の下にある白い枠をタップします。</p>
+      <img src="<%= asset_path('help/提出１.PNG') %>" class="img-fluid" alt="有効期限の入力枠の選択">
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h2>ステップ 2</h2>
+      <p>有効期限の入力(カレンダー):</p>
+      <p>カレンダー方式になっています。赤い丸枠の部分をタップすると年月の選択ができます。</p>
+      <img src="<%= asset_path('help/提出２.PNG') %>" class="img-fluid" alt="カレンダー方式になっている有効期限の入力枠">
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h2>ステップ 3</h2>
+      <p>有効期限の入力(カレンダー2):</p>
+      <p>このように適切な年と月を選択したら、完了ボタンを押して先ほどのカレンダーに戻り、日付を選択してください</p>
+      <img src="<%= asset_path('help/提出３.PNG') %>" class="img-fluid" alt="有効期限の入力方法">
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h2>ステップ 4</h2>
+      <p>画像の提出:</p>
+      <p>①の矢印が指す「ファイルを選択」をタップしてください。次に、②の矢印が指す、「写真ライブラリ」を選択します</p>
+      <p>もし、写真をまだ用意していない方はその下にある「写真またはビデオを撮る」をタップしてください。</p>
+      <img src="<%= asset_path('help/提出４.PNG') %>" class="img-fluid" alt="画像の提出方法">
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h2>ステップ 5</h2>
+      <p>画像の確認と提出方法:</p>
+      <p>カメラロールから、自身の提出する画像を選択して、完了ボタンを押します。</p>
+      <img src="<%= asset_path('help/提出５.PNG') %>" class="img-fluid" alt="画像の確認と提出方法">
+    </div>
+  </div>
+  <p>最後に、保存ボタンを押せば提出は完了です。続いて別の書類を提出してください。</p>
+  <% if current_employee.has_role?(:general) %>
+    <% if @driver_license.nil? %>
+      <%= link_to '新規提出をはじめる', new_uploads_driver_license_path, class: 'btn btn-primary btn-block btn-custom mb-3' %>
+    <% else %>
+      <%= link_to '書類ページへ', uploads_documents_path, class: 'btn btn-primary btn-block btn-custom mb-3' %>
+    <% end %>
+  <% else %>
+    <%= link_to 'ホーム', root_path , class: 'btn btn-primary btn-block btn-custom mb-3'%>
+  <% end %>
+</div>

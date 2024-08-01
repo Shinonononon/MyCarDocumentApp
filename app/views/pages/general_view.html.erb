@@ -15,7 +15,7 @@
             <li>任意保険証</li>
           </ul>
           <br>
-          <p>提出方法を詳しく見る方はこちら</p>
+          <p>提出方法を詳しく見る方は<%= link_to 'こちら',help_path %></p>
           <% if @driver_license.nil? %>
             <%= link_to '新規提出をはじめる', new_uploads_driver_license_path, class: 'btn btn-primary btn-block btn-custom mb-3' %>
           <% else %>

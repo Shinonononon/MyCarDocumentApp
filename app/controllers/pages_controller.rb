@@ -18,6 +18,7 @@ class PagesController < ApplicationController
 
 
   def help
+    @driver_license = current_employee.driver_license
   end
 
   private
