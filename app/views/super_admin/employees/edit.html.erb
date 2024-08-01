@@ -1,20 +1,24 @@
 <h2><%= t('employees.edit.title') %></h2>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-7">
       <%= form_for([:super_admin, @employee], html: { class: 'form-horizontal' }) do |f| %>
         <div class="form-group">
           <%= f.label :name, Employee.human_attribute_name(:name), class: 'col-form-label' %><br />
           <%= f.text_field :name, autofocus: true, class: 'form-control' %>
         </div>
+        <div class="form-group">
+          <%= f.label :name_kana, Employee.human_attribute_name(:name_kana), class: 'col-form-label' %><br />
+          <%= f.text_field :name_kana, autofocus: true, class: 'form-control' %>
+        </div>
         <div class="form-row">
-          <div class="form-group col-md-8">
+          <div class="form-group col-md-3">
+            <%= f.label :department, Employee.human_attribute_name(:department), class: 'col-form-label' %><br />
+            <%= f.collection_select :department_id, Department.all, :id, :name, { prompt: "選択" }, { class: 'form-control' } %>
+          </div>
+          <div class="form-group col-md-9">
             <%= f.label :employee_number, Employee.human_attribute_name(:employee_number), class: 'col-form-label' %><br />
             <%= f.text_field :employee_number, class: 'form-control' %>
-          </div>
-          <div class="form-group col-md-4">
-            <%= f.label :department, Employee.human_attribute_name(:department), class: 'col-form-label' %><br />
-            <%= f.collection_select :department_id, Department.all, :id, :name, { prompt: "部署を選択" }, { class: 'form-control' } %>
           </div>
         </div>
         <div class="form-group">

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   namespace :super_admin do
     resources :employees
   end
@@ -36,4 +35,8 @@ Rails.application.routes.draw do
   root to: "pages#index"
   resources :employees, only: [:edit, :update, :show]
   resources :departments
+
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
 end

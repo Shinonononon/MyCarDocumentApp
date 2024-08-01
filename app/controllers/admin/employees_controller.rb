@@ -33,7 +33,7 @@ module Admin
 
     def update
       if @employee.update(employee_params)
-        @employee.update_role(params[:employee])
+
         redirect_to admin_employees_path, notice: 'アカウントが更新されました'
       else
         render :edit
