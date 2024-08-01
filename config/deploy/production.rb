@@ -53,7 +53,7 @@ server "3.113.29.248",
   user: "ec2-user",
   roles: %w{web db app},
   ssh_options: {
-    user: "user_name", # overrides user setting above
+    user: "ec2-user", # overrides user setting above
     keys: %w(~/Downloads/shiken.pem),
     forward_agent: false,
     auth_methods: %w(publickey password)
