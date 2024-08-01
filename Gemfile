@@ -15,6 +15,7 @@ gem 'rspec-rails'
 gem 'rexml'
 gem 'whenever', require: false
 gem 'kaminari'
+gem 'unicorn'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
@@ -62,6 +63,7 @@ group :development do
   gem "capistrano", "~> 3.10", require: false # 追記
   gem "capistrano-rails", "~> 1.6", require: false # 追記
   gem 'capistrano-safe-deploy-to' # 追記
+  gem 'capistrano3-unicorn'
 end
 
 group :test do
