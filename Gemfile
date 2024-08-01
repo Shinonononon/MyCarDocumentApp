@@ -63,6 +63,7 @@ group :development do
   gem "capistrano", "~> 3.10", require: false # 追記
   gem "capistrano-rails", "~> 1.6", require: false # 追記
   gem 'capistrano-safe-deploy-to' # 追記
+  gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano3-unicorn'
 end
 

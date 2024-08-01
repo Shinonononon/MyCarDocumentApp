@@ -10,6 +10,9 @@ set :rbenv_ruby, '3.3.0'    # 7
 set :log_level, :info   # 8
 set :deploy_to, "/var/www/my_car_document_app"
 
+
+append :linked_files, 'config/secrets.yml'
+
 after 'deploy:published', 'deploy:seed'   # 9
 after 'deploy:finished', 'deploy:restart'   # 10
 
