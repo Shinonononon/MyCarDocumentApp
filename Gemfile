@@ -16,6 +16,9 @@ gem 'rexml'
 gem 'whenever', require: false
 gem 'kaminari'
 gem 'unicorn'
+gem 'image_processing', '~> 1.2'
+gem 'aws-sdk-s3', require: false
+gem 'dotenv-rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
