@@ -7,6 +7,9 @@ class Employee < ApplicationRecord
   belongs_to :department
   rolify
   after_create :assign_default_role
+  before_destroy :dont_delete_last_super_admin, prepend: true
+  before_update :dont_edit_last_super_admin, prepend: true
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -61,6 +64,26 @@ class Employee < ApplicationRecord
     end
     self.add_role(role_name)
   end
+
+  # アドミン消させないやつ
+
+  def dont_delete_last_super_admin
+    if has_role?(:super_admin) && Employee.with_role(:super_admin).count <= 1
+      errors.add(:base, "スーパー管理者が一人になるため、ロールの削除ができませんでした。")
+      throw(:abort)
+      # flash[:notice] = 'スーパー管理者が一人になるため、ロールの削除ができませんでした。'
+    end
+  end
+
+  def dont_edit_last_super_admin
+  #   if Employee.with_role(:super_admin).count <= 1
+  #     errors.add(:base, 'スーパー管理者が一人になるため、ロールの編集ができません。')
+  #     throw :abort
+  #     # flash[:notice] = '管理者が0人になるため権限を変更できません'
+  #   end
+  end
+
+
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

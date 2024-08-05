@@ -28,12 +28,15 @@ module Admin
     end
 
     def edit
-      render 'admin/employees/edit'
+      if @employee.has_role?(:super_admin) && !current_employee.has_role?(:super_admin)
+        redirect_to admin_employees_path, notice: '編集権限がありません'
+      else
+        render 'admin/employees/edit'
+      end
     end
 
     def update
       if @employee.update(employee_params)
-
         redirect_to admin_employees_path, notice: 'アカウントが更新されました'
       else
         render :edit
@@ -41,8 +44,13 @@ module Admin
     end
 
     def destroy
-      @employee.destroy
-      redirect_to admin_employees_path, notice: 'アカウントが削除されました'
+      if @employee.has_role?(:super_admin) && !current_employee.has_role?(:super_admin)
+        redirect_to admin_employees_path, notice: 'スーパー管理者の削除権限がありません'
+      elsif @employee.destroy
+        redirect_to admin_employees_path, notice: 'アカウントが削除されました'
+      else
+        redirect_to admin_employees_path, alert: @employee.errors.full_messages.to_sentence
+      end
     end
 
     private

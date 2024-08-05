@@ -9,8 +9,12 @@
       <p>メールアドレス: <%= @employee.email %></p>
       <p>ロール： <%= @employee.roles.map { |role| I18n.t("roles.#{role.name}") }.join(', ') %></p>
       <div class="text-right">
-        <%= link_to '編集', edit_admin_employee_path(@employee), class: "btn btn-warning mr-2" %>
-        <%= link_to '削除', admin_employee_path(@employee), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+        <% if @employee.has_role?(:super_admin) %>
+          <p>編集/削除権限はありません</p>
+        <% else %>
+          <%= link_to '編集', edit_admin_employee_path(@employee), class: "btn btn-warning mr-2" %>
+          <%= link_to '削除', admin_employee_path(@employee), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+        <% end %>
       </div>
       <table class="table table-striped mt-4">
         <thead>

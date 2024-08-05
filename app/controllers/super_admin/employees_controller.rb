@@ -33,7 +33,6 @@ module SuperAdmin
 
     def update
       if @employee.update(employee_params)
-
         @employee.update_role(employee_params[:role_ids])
         redirect_to super_admin_employees_path, notice: 'アカウントが更新されました'
       else
@@ -42,8 +41,13 @@ module SuperAdmin
     end
 
     def destroy
-      @employee.destroy
-      redirect_to super_admin_employees_path, notice: 'アカウントが削除されました'
+      if @employee.has_role?(:super_admin) && !current_employee.has_role?(:super_admin)
+        redirect_to super_admin_employees_url, alert: '管理者はスーパー管理者を削除できません'
+      elsif @employee.destroy
+        redirect_to super_admin_employees_path, notice: 'アカウントが削除されました'
+      else
+        redirect_to super_admin_employees_url, alert: @employee.errors.full_messages.to_sentence
+    end
     end
 
     private

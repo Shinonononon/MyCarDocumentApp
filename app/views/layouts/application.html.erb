@@ -52,6 +52,7 @@
     </header>
     <div class="container mt-4">
       <p class="notice alert alert-info <%= notice.blank? ? 'd-none' : '' %>"><%= notice %></p>
+      <p class="alert alert-danger <%= alert.blank? ? 'd-none' : '' %>"><%= alert %></p>
       <%= yield %>
     </div>
     <footer class="footer bg-light py-3 mt-5 mb-auto">
