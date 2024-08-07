@@ -1,5 +1,6 @@
 class OptionalInsurance < ApplicationRecord
   belongs_to :employee
+  validate :date_not_in_past
 
   # その他の設定
   has_one_attached :photo

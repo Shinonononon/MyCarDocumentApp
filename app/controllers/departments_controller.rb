@@ -1,6 +1,6 @@
 class DepartmentsController < ApplicationController
   before_action :authenticate_employee!
-  before_action :authorize_admin!
+  before_action :authorize_admins!
   before_action :set_department, only: %i[edit update destroy]
 
 
@@ -40,8 +40,10 @@ class DepartmentsController < ApplicationController
 
   private
 
-  def authorize_admin!
-    redirect_to root_path, alert: 'Access denied.' unless current_employee.has_role?(:admin) || current_employee.has_role?(:super_admin)
+  def authorize_admins!
+    unless  current_employee.has_role?(:admin) || current_employee.has_role?(:super_admin)
+      redirect_to root_path, alert: 'アクセス権限がありません。'
+    end
   end
 
   def set_department

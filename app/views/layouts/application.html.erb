@@ -29,22 +29,22 @@
           <ul class="navbar-nav">
             <% if employee_signed_in? %>
               <% if current_employee.has_role?(:super_admin) %>
-                <li class="nav-item"><%= link_to '社員一覧（スーパー）', super_admin_employees_path, class: "nav-link btn btn-primary" %></li>
-                <li class="nav-item"><%= link_to '部署一覧（スーパー）', departments_path, class: "nav-link btn btn btn-primary" %></li>
-                <li class="nav-item"><%= link_to '新しい社員（スーパー）', new_super_admin_employee_path, class: "nav-link btn  btn-primary" %></li>
+                <li class="nav-item"><%= link_to '社員一覧（スーパー）', super_admin_employees_path, class: "nav-link btn btn-primary", id: 'SAdmin-EmpList'  %></li>
+                <li class="nav-item"><%= link_to '部署一覧（スーパー）', departments_path, class: "nav-link btn btn btn-primary", id: 'SAdmin-DeptList'  %></li>
+                <li class="nav-item"><%= link_to '新しい社員（スーパー）', new_super_admin_employee_path, class: "nav-link btn  btn-primary", id: 'SAdmin-NewEmp'  %></li>
               <% elsif current_employee.has_role?(:admin) %>
-                <li class="nav-item"><%= link_to '社員一覧（管理者）', admin_employees_path, class: "nav-link btn btn btn-primary" %></li>
-                <li class="nav-item"><%= link_to '部署一覧（管理者）', departments_path, class: "nav-link btn btn-primary" %></li>
-                <li class="nav-item"><%= link_to '新しい社員（管理者）', new_admin_employee_path, class: "nav-link btn btn-primary" %></li>
+                <li class="nav-item"><%= link_to '社員一覧（管理者）', admin_employees_path, class: "nav-link btn btn btn-primary", id: 'Admin-EmpList' %></li>
+                <li class="nav-item"><%= link_to '部署一覧（管理者）', departments_path, class: "nav-link btn btn-primary", id: 'Admin-DeptList' %></li>
+                <li class="nav-item"><%= link_to '新しい社員（管理者）', new_admin_employee_path, class: "nav-link btn btn-primary", id: 'Admin-NewEmp' %></li>
               <% elsif current_employee.has_role?(:department_admin) %>
-                <li class="nav-item"><%= link_to '社員一覧（部署管理者）', department_admin_employees_path, class: "nav-link btn btn-primary" %></li>
+                <li class="nav-item"><%= link_to '社員一覧（部署管理者）', department_admin_employees_path, class: "nav-link btn btn-primary", id: 'DeptAdmin-EmpList' %></li>
               <% else %>
-                <li class="nav-item"><%= link_to '書類', uploads_documents_path, class: "nav-link btn btn-primary" %></li>
-                <li class="nav-item"><%= link_to 'マイアカウント', employee_path(current_employee), class: "nav-link btn btn-primary" %></li>
+                <li class="nav-item"><%= link_to '書類', uploads_documents_path, class: "nav-link btn btn-primary", id: 'my-document' %></li>
+                <li class="nav-item"><%= link_to 'マイアカウント', employee_path(current_employee), class: "nav-link btn btn-primary" ,id: 'my-account'%></li>
               <% end %>
-              <li class="nav-item"><%= link_to 'ログアウト', destroy_employee_session_path, method: :delete, class: "nav-link btn btn-primary" %></li>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_employee_session_path, method: :delete, class: "nav-link btn btn-primary" ,id: 'sign-out'%></li>
             <% else %>
-              <li class="nav-item"><%= link_to 'ログイン', new_employee_session_path, class: "nav-link btn btn-primary" %></li>
+              <li class="nav-item"><%= link_to 'ログイン', new_employee_session_path, class: "nav-link btn btn-primary", id: 'sign-in' %></li>
             <% end %>
           </ul>
         </div>

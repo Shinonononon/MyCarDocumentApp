@@ -61,7 +61,7 @@ module Admin
 
     def admin_required
       unless current_employee&.has_role?(:admin)
-        flash[:notice] = 'アクセス権限がありません'
+        flash[:alert] = 'アクセス権限がありません'
         redirect_to pages_index_path
       end
     end

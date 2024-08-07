@@ -39,11 +39,11 @@ ja:
         reset_password_token: リセットパスワードトークン
         reset_password_sent_at: リセットパスワード送信日時
         remember_created_at: ログイン情報記憶日時
-        sign_in_count: サインイン回数
-        current_sign_in_at: 現在のサインイン日時
-        last_sign_in_at: 最終サインイン日時
-        current_sign_in_ip: 現在のサインインIP
-        last_sign_in_ip: 最終サインインIP
+        sign_in_count: ログイン回数
+        current_sign_in_at: 現在のログイン日時
+        last_sign_in_at: 最終ログイン日時
+        current_sign_in_ip: 現在のログインIP
+        last_sign_in_ip: 最終ログインIP
       role:
         name: ロール
         created_at: 作成日時

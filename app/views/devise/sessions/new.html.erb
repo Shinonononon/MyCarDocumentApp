@@ -5,11 +5,11 @@
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }) do |f| %>
         <div class="form-group">
           <%= f.label :email, class: 'control-label' %>
-          <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, id: 'login-email', class: 'form-control', autofocus: true, autocomplete: "email" %>
         </div>
         <div class="form-group">
           <%= f.label :password, class: 'control-label' %>
-          <%= f.password_field :password, class: 'form-control', autocomplete: "current-password" %>
+          <%= f.password_field :password, id:'login-pass', class: 'form-control', autocomplete: "current-password" %>
         </div>
         <% if devise_mapping.rememberable? %>
           <div class="form-group form-check">
@@ -18,7 +18,7 @@
           </div>
         <% end %>
         <div class="form-group text-center">
-          <%= f.submit "Log in", class: 'btn btn-primary btn-block btn-custom' %>
+          <%= f.submit "Log in", id: 'create-session', class: 'btn btn-primary btn-block btn-custom' %>
         </div>
       <% end %>
     </div>

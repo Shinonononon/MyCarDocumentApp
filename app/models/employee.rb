@@ -8,7 +8,7 @@ class Employee < ApplicationRecord
   rolify
   after_create :assign_default_role
   before_destroy :dont_delete_last_super_admin, prepend: true
-  before_update :dont_edit_last_super_admin, prepend: true
+  # before_update :dont_edit_last_super_admin, prepend: true
 
 
   # Include default devise modules. Others available are:
@@ -17,7 +17,7 @@ class Employee < ApplicationRecord
         :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
-  validates :name_kana, presence: true
+  validates :name_kana, presence: true, format: { with: /\A[ぁ-んー－]+\z/, message: 'はひらがなのみ入力可能です。' }
   validates :employee_number, presence: true, uniqueness: true
   validates :department_id, presence: true
 
@@ -71,16 +71,20 @@ class Employee < ApplicationRecord
     if has_role?(:super_admin) && Employee.with_role(:super_admin).count <= 1
       errors.add(:base, "スーパー管理者が一人になるため、ロールの削除ができませんでした。")
       throw(:abort)
-      # flash[:notice] = 'スーパー管理者が一人になるため、ロールの削除ができませんでした。'
     end
   end
 
-  def dont_edit_last_super_admin
-  #   if Employee.with_role(:super_admin).count <= 1
-  #     errors.add(:base, 'スーパー管理者が一人になるため、ロールの編集ができません。')
-  #     throw :abort
-  #     # flash[:notice] = '管理者が0人になるため権限を変更できません'
-  #   end
+  # 対象のroleがsuperadminじゃない時は無条件でupdateできる
+  # superadmin数が2人以上だったらupdateできる
+  def can_edit_last_super_admin(role_id)
+    if roles.first.name != "super_admin" ||
+      Employee.with_role(:super_admin).count > 1 ||
+      (Employee.with_role(:super_admin).count <= 1 &&
+      roles.first.id == role_id)
+      return true
+    end
+    errors.add(:base, 'スーパー管理者が一人になるため、ロールの編集ができません。')
+    return false
   end
 
 

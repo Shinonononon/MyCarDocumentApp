@@ -32,10 +32,14 @@ module SuperAdmin
     end
 
     def update
-      if @employee.update(employee_params)
+
+      if @employee.can_edit_last_super_admin(employee_params[:role_ids].to_i)
+        @employee.update(employee_params)
         @employee.update_role(employee_params[:role_ids])
+        #binding.irb
         redirect_to super_admin_employees_path, notice: 'アカウントが更新されました'
       else
+        #@employee.errors.add(:base, 'スーパー管理者が一人になるため、ロールの編集ができません。')
         render :edit
       end
     end
@@ -58,7 +62,7 @@ module SuperAdmin
 
     def super_admin_required
       unless current_employee&.has_role?(:super_admin)
-        flash[:notice] = 'アクセス権限がありません'
+        flash[:alert] = 'アクセス権限がありません'
         redirect_to pages_index_path
       end
     end

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe DocumentMailer, type: :mailer do
   describe 'expiration_notification' do
-    let(:employee) { create(:employee) }
+    let(:employee) { create(:first_employee) }
     let(:driver_license) { create(:driver_license, employee: employee) }
     let(:vehicle_inspection) { create(:vehicle_inspection, employee: employee) }
     let(:documents) { [driver_license, vehicle_inspection] }
