@@ -7,7 +7,7 @@ module SuperAdmin
 
     def index
       @search_params = employee_search_params
-      @employees = Employee.all.includes(:department, :driver_license, :vehicle_inspection, :compulsory_insurance, :optional_insurance).search(@search_params)
+      @employees = Employee.all.includes(:department, :driver_license, :vehicle_inspection, :compulsory_insurance, :optional_insurance).search(@search_params).page(params[:page])
     end
 
     def show

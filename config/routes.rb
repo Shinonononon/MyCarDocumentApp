@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   resources :employees, only: [:edit, :update, :show]
   resources :departments
 
+  get '*path', to: 'application#render404'
+  get '*path', to: 'application#render500'
+
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
