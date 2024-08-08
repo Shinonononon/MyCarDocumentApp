@@ -12,7 +12,7 @@ FactoryBot.define do
 
   factory :second_employee, class: Employee  do
     name { "テスト2" }
-    name_kana { 'てすと2' }
+    name_kana { 'てすとつー' }
     employee_number { 'N22222' }
     email { "test2@example.com" }
     password { "password" }

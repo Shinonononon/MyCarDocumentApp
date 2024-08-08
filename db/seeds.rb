@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+10.times do |i|
+  Department.create!(
+    name: "部署#{i + 1}"
+  )
+end
+
+10.times do |i|
+  Employee.create!(
+  name: "テスト #{i + 1}",
+  name_kana: "てすと",
+  email: "test#{i + 1}@example.com",
+  employee_number: "TTT1234#{i + 1}",
+  department_id: 1 ,
+  password: 'password',
+  password_confirmation: 'password',
+  )
+end
