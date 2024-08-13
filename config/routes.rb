@@ -39,7 +39,8 @@ Rails.application.routes.draw do
 
   # get '*path', to: 'application#render404'
   # get '*path', to: 'application#render500'
-
+  # 上のやつだと、アクティブストレージがパーになって動かないから下のに変更
+  # https://qiita.com/xusaku_/items/8c8dc237dbbbcc116964
   get '*not_found' => 'application#render404', constraints: lambda { |request| !request.path.include?("active_storage") }
   post '*not_found' => 'application#render404', constraints: lambda { |request| !request.path.include?("active_storage") }
 
