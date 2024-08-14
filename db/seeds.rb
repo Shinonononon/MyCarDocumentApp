@@ -49,7 +49,7 @@ dept_emp2 = Employee.create!(
 name: "部署アドミン2",
 name_kana: "ぶしょあどみんに",
 email: "dept_admin2@example.com",
-employee_number: "DDD11111",
+employee_number: "DDD22222",
 department_id: 3 ,
 password: 'password',
 password_confirmation: 'password',
