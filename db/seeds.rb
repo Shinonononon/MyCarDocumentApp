@@ -5,20 +5,81 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Department.create!([
+{name: '人事部'},
+{name: '営業部'},
+{name: '総務部'}
+])
 
-10.times do |i|
-  Department.create!(
-    name: "部署#{i + 1}"
+super_admin = Role.create!(name: 'super_admin')
+admin = Role.create!(name: 'admin')
+dept_admin = Role.create!(name: 'department_admin')
+
+super_emp = Employee.create!(
+  name: "スーパーアドミン",
+  name_kana: "すーぱーあどみん",
+  email: "super_admin@example.com",
+  employee_number: "SSS12345",
+  department_id: 1 ,
+  password: 'password',
+  password_confirmation: 'password',
+)
+
+admin_emp = Employee.create!(
+name: "アドミン",
+name_kana: "あどみん",
+email: "admin@example.com",
+employee_number: "AAA12345",
+department_id: 1 ,
+password: 'password',
+password_confirmation: 'password',
+)
+
+dept_emp1 = Employee.create!(
+name: "部署アドミン1",
+name_kana: "ぶしょあどみんいち",
+email: "dept_admin1@example.com",
+employee_number: "DDD11111",
+department_id: 2 ,
+password: 'password',
+password_confirmation: 'password',
+)
+
+dept_emp2 = Employee.create!(
+name: "部署アドミン2",
+name_kana: "ぶしょあどみんに",
+email: "dept_admin2@example.com",
+employee_number: "DDD11111",
+department_id: 3 ,
+password: 'password',
+password_confirmation: 'password',
+)
+
+super_emp.update_role(super_admin.id)
+admin_emp.update_role(admin.id)
+dept_emp1.update_role(dept_admin.id)
+dept_emp2.update_role(dept_admin.id)
+
+
+5.times do |i|
+  Employee.create!(
+  name: "営業部テスト #{i + 1}",
+  name_kana: "えいぎょうぶてすと",
+  email: "seles_test#{i + 1}@example.com",
+  employee_number: "TTT1234#{i + 1}",
+  department_id: 2 ,
+  password: 'password',
+  password_confirmation: 'password',
   )
 end
 
-10.times do |i|
+5.times do |i|
   Employee.create!(
-  name: "テスト #{i + 1}",
-  name_kana: "てすと",
-  email: "test#{i + 1}@example.com",
-  employee_number: "TTT1234#{i + 1}",
-  department_id: 1 ,
+  name: "総務部テスト #{i + 1}",
+  name_kana: "そうむぶてすと",
+  email: "soumu_test#{i + 1}@example.com",
+  employee_number: "TTT5432#{i + 1}",
+  department_id: 3 ,
   password: 'password',
   password_confirmation: 'password',
   )
