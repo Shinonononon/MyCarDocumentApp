@@ -1,7 +1,7 @@
 <p><%= @employee.name %> 様,</p>
 <br>
 <% if @documents.size > 1 %>
-  <p>以下の書類の有効期限が近づいています。</p>
+  <p>以下の有効期限が近づいています。</p>
 <% else %>
   <p><%= @documents.first.model_name.human %>の有効期限が近づいています。</p>
 <% end %>
@@ -9,7 +9,11 @@
 <br>
 <ul>
   <% @documents.each do |document| %>
+    <li>
+      <p>名前：テスト社員</p>
+    </li>
     <li><%= document.model_name.human %>: <%= document.expiration_date %></li>
+    <br>
   <% end %>
 </ul>
 <br>
