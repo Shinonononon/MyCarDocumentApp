@@ -30,8 +30,10 @@ class Employee < ApplicationRecord
       .search_number(search_params[:employee_number])
       .search_department(search_params[:department])
   }
-
-  scope :search_name, ->(name) { where('name LIKE ?', "%#{name}%") if name.present? }
+# 名前と部署を同時にサーチする時、name LIKE?だとエラーが発生。
+# 原因はnameというカラムがemployeeにもdepartmentにも存在し、どちらを検索すればいいのかわからなくなっちゃったらしい
+# ここで解決：https://qiita.com/j-sunaga/items/99e576cca995b84a7839
+  scope :search_name, ->(name) { where('employees.name LIKE ?', "%#{name}%") if name.present? }
   scope :search_number, ->(employee_number) { where('employee_number LIKE ?', "%#{employee_number}%") if employee_number.present? }
   scope :search_department, ->(department) { joins(:department).where(department: { id: department }) if department.present? }
 
